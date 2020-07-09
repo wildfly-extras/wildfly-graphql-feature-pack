@@ -22,21 +22,41 @@
 
     <resources>
         <artifact name="${io.smallrye:smallrye-graphql}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-cdi}"/>
         <artifact name="${io.smallrye:smallrye-graphql-servlet}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-schema-model}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-schema-builder}"/>
+        <artifact name="${com.graphql-java:graphql-java}"/>
+        <artifact name="${com.graphql-java:java-dataloader}"/>
+        <artifact name="${org.antlr:antlr4-runtime}"/>
+        <artifact name="${org.reactivestreams:reactive-streams}"/>
     </resources>
 
     <dependencies>
         <!-- TODO perhaps this can be pruned more -->
         <module name="io.smallrye.config" services="import"/>
         <module name="io.smallrye.graphql.api"/>
+        <module name="org.eclipse.microprofile.config.api"/>
         <module name="org.eclipse.microprofile.graphql.api"/>
 
         <module name="org.jboss.weld.api"/>
         <module name="org.jboss.weld.core"/>
         <module name="org.jboss.weld.spi"/>
 
+        <module name="org.jboss.jandex"/>
+
         <module name="javax.enterprise.api"/>
         <module name="org.jboss.logging"/>
         <module name="java.logging"/>
+        <module name="javax.sql.api"/>
+        <module name="javax.servlet.api"/>
+        <module name="javax.json.api"/>
+        <module name="javax.json.bind.api"/>
+        <module name="javax.validation.api" optional="true"/>
+        <module name="io.smallrye.metrics" optional="true"/>
+        <module name="io.smallrye.opentracing" optional="true"/>
+        <module name="io.opentracing.opentracing-api" optional="true"/>
+        <module name="org.eclipse.microprofile.metrics.api" optional="true"/>
+        <module name="org.slf4j"/>
     </dependencies>
 </module>

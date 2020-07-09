@@ -26,16 +26,19 @@
     <dependencies>
         <module name="org.jboss.as.controller"/>
         <module name="org.jboss.as.server"/>
-
+        <module name="org.jboss.as.ee"/>
+        <module name="org.jboss.as.web-common"/>
+        <module name="org.jboss.as.weld"/>
+        <module name="org.jboss.jandex"/>
         <module name="org.jboss.logging"/>
+        <module name="org.jboss.metadata.common"/>
+        <module name="org.jboss.metadata.web"/>
         <module name="org.jboss.modules"/>
         <module name="org.jboss.staxmapper"/>
-        <!--
-            Most CP dependencies are provisioned in the subsystem definition, as they are not
-            required by the subsystem itself, only by the deployments
-        -->
         <module name="io.undertow.servlet"/>
         <module name="org.eclipse.microprofile.graphql.api"/>
+        <module name="io.smallrye.graphql" export="true"/>
         <module name="org.wildfly.security.manager"/>
+        <module name="javax.enterprise.api"/>
     </dependencies>
 </module>

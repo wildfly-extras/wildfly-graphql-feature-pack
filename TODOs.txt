@@ -1,0 +1,9 @@
+- !!! find out if we can work without adding beans.xml into smallrye-graphql-cdi jar, right now it won't work without it
+- Metrics integration
+- OpenTracing integration
+- Graphiql ui
+- GraphQL client
+- Security
+- Configuration in subsystem
+- Bean validation integration
+- Validate that there is at least one query/mutation and fail gracefully otherwise

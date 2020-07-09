@@ -16,6 +16,7 @@
 
 package org.wildfly.extension.microprofile.graphql._private;
 
+import org.jboss.as.server.deployment.DeploymentUnitProcessingException;
 import org.jboss.logging.BasicLogger;
 import org.jboss.logging.Logger;
 import org.jboss.logging.annotations.LogMessage;
@@ -29,11 +30,19 @@ public interface MicroProfileGraphQLLogger extends BasicLogger {
 
     MicroProfileGraphQLLogger LOGGER = Logger.getMessageLogger(MicroProfileGraphQLLogger.class, "org.wildfly.extension.microprofile.graphql.smallrye");
 
-    /**
-     * Logs an informational message indicating the subsystem is being activated.
-     */
     @LogMessage(level = INFO)
     @Message(id = 1, value = "Activating Eclipse MicroProfile GraphQL Subsystem")
     void activatingSubsystem();
+
+    @LogMessage(level = INFO)
+    @Message(id = 2, value = "Activating GraphQL for deployment %s")
+    void activatingGraphQLForDeployment(String deployment);
+
+    @LogMessage(level = INFO)
+    @Message(id = 3, value = "Found %s queries and %s mutations in the API")
+    void foundOperations(int queries, int mutations);
+
+    @Message(id = 100, value = "Multiple GraphQLApi annotations were found")
+    DeploymentUnitProcessingException multipleGraphQLApiAnnotations();
 
 }

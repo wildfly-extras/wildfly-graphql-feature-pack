@@ -24,9 +24,13 @@ import org.jboss.as.controller.OperationFailedException;
 import org.jboss.as.controller.PersistentResourceDefinition;
 import org.jboss.as.controller.SimpleResourceDefinition;
 import org.jboss.as.controller.capability.RuntimeCapability;
-import org.jboss.as.controller.registry.ManagementResourceRegistration;
+import org.jboss.as.server.AbstractDeploymentChainStep;
+import org.jboss.as.server.DeploymentProcessorTarget;
+import org.jboss.as.server.deployment.Phase;
 import org.jboss.dmr.ModelNode;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
+import org.wildfly.extension.microprofile.graphql.deployment.MicroProfileGraphQLDependencyProcessor;
+import org.wildfly.extension.microprofile.graphql.deployment.MicroProfileGraphQLDeploymentProcessor;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -60,20 +64,6 @@ public class MicroProfileGraphQLSubsystemDefinition extends PersistentResourceDe
         return Collections.emptyList();
     }
 
-    @Override
-    public void registerAdditionalRuntimePackages(ManagementResourceRegistration resourceRegistration) {
-        // TODO
-//        resourceRegistration.registerAdditionalRuntimePackages(
-//                RuntimePackageDependency.required("io.reactivex.rxjava2.rxjava"),
-//                RuntimePackageDependency.required("io.smallrye.reactive.messaging"),
-//                RuntimePackageDependency.required("io.smallrye.reactive.messaging.connector"),
-//                RuntimePackageDependency.required("io.vertx.client"),
-//                RuntimePackageDependency.required("org.apache.commons.lang3"),
-//                RuntimePackageDependency.required("org.eclipse.microprofile.reactive-messaging.api"),
-//                RuntimePackageDependency.required("org.slf4j"));
-
-    }
-
     static class AddHandler extends AbstractBoottimeAddStepHandler {
 
         static AddHandler INSTANCE = new AddHandler();
@@ -86,13 +76,14 @@ public class MicroProfileGraphQLSubsystemDefinition extends PersistentResourceDe
         protected void performBoottime(OperationContext context, ModelNode operation, ModelNode model) throws OperationFailedException {
             super.performBoottime(context, operation, model);
 
-            // TODO: register deployment processor
-//            context.addStep(new AbstractDeploymentChainStep() {
-//                public void execute(DeploymentProcessorTarget processorTarget) {
-//                    final int DEPENDENCIES_MICROPROFILE_REACTIVE_MESSAGING = 6288;
-//                    processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, DEPENDENCIES, DEPENDENCIES_MICROPROFILE_REACTIVE_MESSAGING, new ReactiveMessagingDependencyProcessor());
-//                }
-//            }, RUNTIME);
+            context.addStep(new AbstractDeploymentChainStep() {
+                public void execute(DeploymentProcessorTarget processorTarget) {
+                    final int DEPENDENCIES_MICROPROFILE_GRAPHQL = 6288;
+                    processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.DEPENDENCIES, DEPENDENCIES_MICROPROFILE_GRAPHQL, new MicroProfileGraphQLDependencyProcessor());
+                    final int POST_MODULE_MICROPROFILE_GRAPHQL = 14241;
+                    processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.POST_MODULE, POST_MODULE_MICROPROFILE_GRAPHQL, new MicroProfileGraphQLDeploymentProcessor());
+                }
+            }, OperationContext.Stage.RUNTIME);
 
             MicroProfileGraphQLLogger.LOGGER.activatingSubsystem();
         }
