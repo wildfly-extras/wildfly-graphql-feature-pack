@@ -16,10 +16,8 @@
 
 package org.wildfly.extension.microprofile.graphql.deployment;
 
-import io.smallrye.graphql.schema.SchemaBuilder;
-import io.smallrye.graphql.schema.model.Schema;
 import io.smallrye.graphql.servlet.ExecutionServlet;
-import org.jboss.as.controller.capability.CapabilityServiceSupport;
+import io.smallrye.graphql.servlet.SchemaServlet;
 import org.jboss.as.ee.structure.DeploymentType;
 import org.jboss.as.ee.structure.DeploymentTypeMarker;
 import org.jboss.as.server.deployment.Attachments;
@@ -29,21 +27,17 @@ import org.jboss.as.server.deployment.DeploymentUnitProcessingException;
 import org.jboss.as.server.deployment.DeploymentUnitProcessor;
 import org.jboss.as.server.deployment.annotation.CompositeIndex;
 import org.jboss.as.web.common.WarMetaData;
-import org.jboss.as.weld.WeldCapability;
-import org.jboss.jandex.AnnotationInstance;
 import org.jboss.jandex.DotName;
-import org.jboss.jandex.Index;
 import org.jboss.metadata.web.jboss.JBossServletMetaData;
 import org.jboss.metadata.web.jboss.JBossServletsMetaData;
 import org.jboss.metadata.web.jboss.JBossWebMetaData;
+import org.jboss.metadata.web.spec.ListenerMetaData;
 import org.jboss.metadata.web.spec.ServletMappingMetaData;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static org.jboss.as.weld.Capabilities.WELD_CAPABILITY_NAME;
 
 public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitProcessor {
 
@@ -56,57 +50,34 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
             return;
         }
 
-        // see whether this deployment contains GraphQL
+        // see whether this deployment contains GraphQL annotations
         final CompositeIndex compositeIndex = deploymentUnit.getAttachment(Attachments.COMPOSITE_ANNOTATION_INDEX);
-        Index usedIndex = locateIndexToUseForSchema(compositeIndex);
-        if (usedIndex == null) {
+        if (compositeIndex.getAnnotations(ANNOTATION_GRAPHQL_API).isEmpty()) {
             return;
         }
         MicroProfileGraphQLLogger.LOGGER.activatingGraphQLForDeployment(deploymentUnit.getName());
 
-        // compute the schema and initialize the GraphQLProducer bean
-        Schema schema = SchemaBuilder.build(usedIndex);
-        initializeGraphQLProducer(deploymentUnit, schema);
-        MicroProfileGraphQLLogger.LOGGER.foundOperations(schema.getQueries().size(),
-                schema.getMutations().size());
-
-        // add execution and schema servlets
-        registerExecutionServlet(deploymentUnit.getAttachment(WarMetaData.ATTACHMENT_KEY).getMergedJBossWebMetaData());
-        // TODO: schema servlet
+        // steps needed for application initialization
+        JBossWebMetaData mergedJBossWebMetaData = deploymentUnit.getAttachment(WarMetaData.ATTACHMENT_KEY).getMergedJBossWebMetaData();
+        registerStartupListener(mergedJBossWebMetaData);
+        registerExecutionServlet(mergedJBossWebMetaData);
+        registerSchemaServlet(mergedJBossWebMetaData);
     }
 
-    private void initializeGraphQLProducer(DeploymentUnit deploymentUnit, Schema schema) throws DeploymentUnitProcessingException {
-        final CapabilityServiceSupport support = deploymentUnit.getAttachment(Attachments.CAPABILITY_SERVICE_SUPPORT);
-        final WeldCapability weldCapability;
-        try {
-            weldCapability = support.getCapabilityRuntimeAPI(WELD_CAPABILITY_NAME, WeldCapability.class);
-            if (weldCapability.isPartOfWeldDeployment(deploymentUnit)) {
-                weldCapability.registerExtensionInstance(new GraphQLProducerInitializationExtension(schema), deploymentUnit);
-            } else {
-                throw new DeploymentUnitProcessingException("blabla");
-            }
-        } catch (CapabilityServiceSupport.NoSuchCapabilityException e) {
-            throw new DeploymentUnitProcessingException(e);
-        }
-    }
 
-    private Index locateIndexToUseForSchema(CompositeIndex compositeIndex) throws DeploymentUnitProcessingException {
-        List<AnnotationInstance> graphQlApis = new ArrayList<>();
-        Index usedIndex = null;
-        for (Index index : compositeIndex.getIndexes()) {
-            List<AnnotationInstance> annotations = index.getAnnotations(ANNOTATION_GRAPHQL_API);
-            if (!annotations.isEmpty()) {
-                graphQlApis.addAll(annotations);
-                usedIndex = index;
-            }
+    // register the io.smallrye.graphql.servlet.StartupListener which needs to be called to initialize
+    // the application
+    private void registerStartupListener(JBossWebMetaData webdata) {
+        ListenerMetaData startupListenerMetadata = new ListenerMetaData();
+        startupListenerMetadata.setListenerClass("io.smallrye.graphql.servlet.StartupListener");
+        List<ListenerMetaData> containerListeners = webdata.getListeners();
+        if (containerListeners == null) {
+            List<ListenerMetaData> list = new ArrayList<>();
+            list.add(startupListenerMetadata);
+            webdata.setListeners(list);
+        } else {
+            containerListeners.add(startupListenerMetadata);
         }
-        if (graphQlApis.size() == 0) {
-            return null;
-        }
-        if (graphQlApis.size() > 1) {
-            throw MicroProfileGraphQLLogger.LOGGER.multipleGraphQLApiAnnotations();
-        }
-        return usedIndex;
     }
 
     private void registerExecutionServlet(JBossWebMetaData webdata) {
@@ -127,9 +98,24 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
         if (mappings != null) {
             mappings.add(mapping);
         } else {
-            webdata.setServletMappings(Collections.singletonList(mapping));
+            mappings = new ArrayList<>();
+            mappings.add(mapping);
+            webdata.setServletMappings(mappings);
         }
 
+    }
+
+    private void registerSchemaServlet(JBossWebMetaData webdata) {
+        JBossServletMetaData servlet = new JBossServletMetaData();
+        servlet.setLoadOnStartup("2");
+        servlet.setName("SmallRyeGraphQLSchemaServlet");
+        servlet.setServletClass(SchemaServlet.class.getName());
+        servlet.setAsyncSupported(false);
+        webdata.getServlets().add(servlet);
+        ServletMappingMetaData mapping = new ServletMappingMetaData();
+        mapping.setServletName("SmallRyeGraphQLSchemaServlet");
+        mapping.setUrlPatterns(Collections.singletonList("/graphql/schema.graphql"));    // TODO make configurable
+        webdata.getServletMappings().add(mapping);
     }
 
     @Override
