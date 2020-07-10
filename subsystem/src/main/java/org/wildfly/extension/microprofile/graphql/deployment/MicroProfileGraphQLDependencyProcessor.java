@@ -39,6 +39,8 @@ public class MicroProfileGraphQLDependencyProcessor implements DeploymentUnitPro
             final ModuleSpecification moduleSpecification = deploymentUnit.getAttachment(Attachments.MODULE_SPECIFICATION);
             final ModuleLoader moduleLoader = Module.getBootModuleLoader();
             moduleSpecification.addSystemDependency(new ModuleDependency(moduleLoader, "io.smallrye.graphql", false, false, true, false));
+//            org.eclipse.microprofile.graphql.api
+//            moduleSpecification.addSystemDependency(new ModuleDependency(moduleLoader, "org.eclipse.microprofile.graphql.api", false, false, true, false));
         }
     }
 

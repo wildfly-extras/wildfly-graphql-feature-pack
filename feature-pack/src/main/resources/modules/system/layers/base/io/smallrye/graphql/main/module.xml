@@ -33,11 +33,11 @@
     </resources>
 
     <dependencies>
-        <!-- TODO perhaps this can be pruned more -->
+        <!-- TODO perhaps this can be pruned and cleaned up more -->
         <module name="io.smallrye.config" services="import"/>
         <module name="io.smallrye.graphql.api"/>
         <module name="org.eclipse.microprofile.config.api"/>
-        <module name="org.eclipse.microprofile.graphql.api"/>
+        <module name="org.eclipse.microprofile.graphql.api" export="true"/>
 
         <module name="org.jboss.weld.api"/>
         <module name="org.jboss.weld.core"/>
@@ -50,7 +50,7 @@
         <module name="java.logging"/>
         <module name="javax.sql.api"/>
         <module name="javax.servlet.api"/>
-        <module name="javax.json.api"/>
+        <module name="javax.json.api" export="true"/>
         <module name="javax.json.bind.api"/>
         <module name="javax.validation.api" optional="true"/>
         <module name="io.smallrye.metrics" optional="true"/>

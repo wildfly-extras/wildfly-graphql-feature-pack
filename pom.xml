@@ -234,17 +234,6 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.antlr</groupId>
-                <artifactId>antlr4-runtime</artifactId>
-                <version>${version.org.antlr4}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>*</groupId>
-                        <artifactId>*</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
                 <groupId>org.reactivestreams</groupId>
                 <artifactId>reactive-streams</artifactId>
                 <version>${version.org.reactivestreams}</version>
@@ -336,6 +325,14 @@
                 <version>${version.org.wildfly.checkstyle-config}</version>
             </dependency>
 
+            <!-- tests -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.graphql</groupId>
+                <artifactId>microprofile-graphql-tck</artifactId>
+                <version>${version.org.eclipse.microprofile.graphql}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <build>
@@ -425,12 +422,10 @@
         <tag>HEAD</tag>
     </scm>-->
     <modules>
-        <!-- TODO other modules -->
-<!--        <module>provision-xml-verifier</module>-->
         <module>subsystem</module>
         <module>feature-pack</module>
         <module>build</module>
-<!--        <module>testsuite</module>-->
+        <module>testsuite</module>
         <module>quickstart</module>
     </modules>
 
