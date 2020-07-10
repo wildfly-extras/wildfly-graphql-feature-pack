@@ -17,6 +17,7 @@
 package org.wildfly.extras.quickstart.microprofile.graphql;
 
 import org.eclipse.microprofile.graphql.GraphQLApi;
+import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;
 
 import javax.inject.Inject;
@@ -31,6 +32,12 @@ public class AddressBookApi {
     @Query
     public List<Person> getPeople() {
         return database.getAll();
+    }
+
+    @Mutation
+    public Person createPerson(Person person) {
+        database.add(person);
+        return person;
     }
 
 }

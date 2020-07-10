@@ -7,3 +7,6 @@
 - Configuration in subsystem
 - Bean validation integration
 - Validate that there is at least one query/mutation and fail gracefully otherwise
+- Fix problems when multiple GraphQL deployments exist (if possible)
+- Test coverage
+- A proper README

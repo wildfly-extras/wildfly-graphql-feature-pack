@@ -1,0 +1,11 @@
+{"query": "mutation createPerson {
+  createPerson(person: {
+            name: \"Frunubucator\",
+            yearOfBirth: 1995
+         }){
+            yearOfBirth
+            name
+         }
+  }",
+  "operationName":"createPerson"
+}

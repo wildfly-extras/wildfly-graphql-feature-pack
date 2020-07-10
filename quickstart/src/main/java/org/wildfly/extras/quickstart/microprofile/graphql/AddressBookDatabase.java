@@ -25,10 +25,6 @@ import java.util.List;
 @ApplicationScoped
 public class AddressBookDatabase {
 
-    // TODO REMOVE
-//    @Inject
-//    GraphQLProducer producer;
-
     private final List<Person> people = new ArrayList<>();
 
     @PostConstruct
@@ -48,5 +44,7 @@ public class AddressBookDatabase {
         return Collections.unmodifiableList(people);
     }
 
-
+    public void add(Person person) {
+        people.add(person);
+    }
 }
