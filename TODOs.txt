@@ -1,4 +1,4 @@
-- !!! find out if we can work without adding beans.xml into smallrye-graphql-cdi jar, right now it won't work without it
+- Update to GraphQL 1.0.5 that contains beans.xml in the CDI module
 - Metrics integration
 - OpenTracing integration
 - Graphiql ui
