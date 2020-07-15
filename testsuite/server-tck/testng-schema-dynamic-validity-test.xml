@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MicroProfile_GraphQL2" verbose="1">
+    <listeners>
+        <listener class-name="org.wildfly.extras.graphql.tck.TestInterceptor" />
+    </listeners>
+    <test name="SchemaDynamicValidityTest">
+        <classes>
+            <class name="org.eclipse.microprofile.graphql.tck.dynamic.SchemaDynamicValidityTest"/>
+        </classes>
+    </test>
+</suite>

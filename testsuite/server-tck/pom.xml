@@ -120,7 +120,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <reuseForks>false</reuseForks>
                     <dependenciesToScan>
                         <dependency>org.eclipse.microprofile.graphql:microprofile-graphql-server-tck</dependency> <!-- 1.1-SNAPSHOT -->
                         <dependency>org.eclipse.microprofile.graphql:microprofile-graphql-tck</dependency> <!-- 1.0.x -->
@@ -129,10 +128,41 @@
                         <jboss.install.dir>${jboss.dist}</jboss.install.dir>
                         <server.jvm.args>${server.jvm.args}</server.jvm.args>
                     </systemPropertyVariables>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
                 </configuration>
+                <!-- FIXME: we currently have an execution for each test separately, because
+                    currently the subsystem doesn't work correctly with multiple deployments,
+                    so this is to force a new WildFly instance per each test class. Once we figure out
+                    how to handle multiple deployments in one run, use the default-test execution only -->
+                <executions>
+                    <execution>
+                        <id>SchemaDynamicValidityTest</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testng-schema-dynamic-validity-test.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>ExecutionDynamicTest</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testng-execution-dynamic-test.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </execution>
+                    <execution>   <!-- skip the default surefire execution -->
+                        <id>default-test</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
