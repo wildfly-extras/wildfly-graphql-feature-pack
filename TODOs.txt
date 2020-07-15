@@ -1,11 +1,11 @@
 - Update to GraphQL 1.0.5 that contains beans.xml in the CDI module
-- Metrics integration
-- OpenTracing integration
+- Metrics integration + tests
+- OpenTracing integration + tests
 - Graphiql ui
 - GraphQL client
 - Security
 - Configuration in subsystem
-- Bean validation integration
+- Bean validation integration + tests
 - Validate that there is at least one query/mutation and fail gracefully otherwise
 - Fix problems when multiple GraphQL deployments exist (if possible)
 - Test coverage
