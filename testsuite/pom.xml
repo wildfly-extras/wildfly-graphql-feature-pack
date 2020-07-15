@@ -26,10 +26,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wildfly-microprofile-graphql-testsuite</artifactId>
-    <name>WildFly MicroProfile GraphQL - Test Suite</name>
+    <name>WildFly MicroProfile GraphQL - Test Suite Parent</name>
     <packaging>pom</packaging>
 
     <modules>
+        <module>integration</module>
         <module>server-tck</module>
     </modules>
 

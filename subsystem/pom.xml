@@ -26,7 +26,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>wildfly-microprofile-graphql</artifactId>
-    <name>WildFly MicroProfile GraphQL</name>
+    <name>WildFly MicroProfile GraphQL - Subsystem</name>
 
     <dependencies>
         <dependency>
