@@ -29,6 +29,7 @@ import org.jboss.as.web.common.WarMetaData;
 import org.jboss.metadata.web.jboss.JBossWebMetaData;
 import org.jboss.vfs.VFS;
 import org.jboss.vfs.VirtualFile;
+import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -99,9 +100,10 @@ public class GraphiQLUIDeploymentProcessor implements DeploymentUnitProcessor {
     private void updateApiUrl(Path renderJs, Path targetFile, String graphqlPath) throws IOException {
         String content = new String(Files.readAllBytes(renderJs), StandardCharsets.UTF_8);
         String result = updateApiUrl(content, graphqlPath);
-        if (result != null) {
-            Files.write(targetFile, result.getBytes(StandardCharsets.UTF_8));
+        if (result.equals(content)) {
+            MicroProfileGraphQLLogger.LOGGER.couldNotUpdateRenderJs(renderJs.toString());
         }
+        Files.write(targetFile, result.getBytes(StandardCharsets.UTF_8));
     }
 
     public String updateApiUrl(String original, String graphqlPath) {

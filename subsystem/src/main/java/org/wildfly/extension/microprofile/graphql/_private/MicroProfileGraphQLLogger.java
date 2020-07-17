@@ -24,6 +24,7 @@ import org.jboss.logging.annotations.Message;
 import org.jboss.logging.annotations.MessageLogger;
 
 import static org.jboss.logging.Logger.Level.INFO;
+import static org.jboss.logging.Logger.Level.WARN;
 
 @MessageLogger(projectCode = "WFLYGRAPHQL", length = 4)
 public interface MicroProfileGraphQLLogger extends BasicLogger {
@@ -41,6 +42,10 @@ public interface MicroProfileGraphQLLogger extends BasicLogger {
     @LogMessage(level = INFO)
     @Message(id = 3, value = "Found %s queries and %s mutations in the API")
     void foundOperations(int queries, int mutations);
+
+    @LogMessage(level = WARN)
+    @Message(id = 4, value = "Could not update %s because the contents are not as expected")
+    void couldNotUpdateRenderJs(String path);
 
     @Message(id = 100, value = "Multiple GraphQLApi annotations were found")
     DeploymentUnitProcessingException multipleGraphQLApiAnnotations();
