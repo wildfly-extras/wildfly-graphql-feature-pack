@@ -29,6 +29,7 @@ import org.jboss.as.server.DeploymentProcessorTarget;
 import org.jboss.as.server.deployment.Phase;
 import org.jboss.dmr.ModelNode;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
+import org.wildfly.extension.microprofile.graphql.deployment.GraphiQLUIDeploymentProcessor;
 import org.wildfly.extension.microprofile.graphql.deployment.MicroProfileGraphQLDependencyProcessor;
 import org.wildfly.extension.microprofile.graphql.deployment.MicroProfileGraphQLDeploymentProcessor;
 
@@ -80,6 +81,8 @@ public class MicroProfileGraphQLSubsystemDefinition extends PersistentResourceDe
                 public void execute(DeploymentProcessorTarget processorTarget) {
                     final int DEPENDENCIES_MICROPROFILE_GRAPHQL = 6288;
                     processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.DEPENDENCIES, DEPENDENCIES_MICROPROFILE_GRAPHQL, new MicroProfileGraphQLDependencyProcessor());
+                    final int GRAPHIQL_UI = 8193;
+                    processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.POST_MODULE, GRAPHIQL_UI, new GraphiQLUIDeploymentProcessor());
                     final int POST_MODULE_MICROPROFILE_GRAPHQL = 14241;
                     processorTarget.addDeploymentProcessor(SUBSYSTEM_NAME, Phase.POST_MODULE, POST_MODULE_MICROPROFILE_GRAPHQL, new MicroProfileGraphQLDeploymentProcessor());
                 }
