@@ -31,6 +31,7 @@ import org.jboss.vfs.VFS;
 import org.jboss.vfs.VirtualFile;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -46,6 +47,8 @@ import java.util.List;
  * could be to distribute it with WildFly as a static module and somehow append it to GraphQL deployments.
  */
 public class GraphiQLUIDeploymentProcessor implements DeploymentUnitProcessor {
+
+    private Closeable mountedOverlay;
 
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
@@ -66,7 +69,7 @@ public class GraphiQLUIDeploymentProcessor implements DeploymentUnitProcessor {
                     Path pathToUpdatedRenderJs = Files.createTempFile(null, "render.js");
                     String graphQlPath = ctxRoot.endsWith("/") ? ctxRoot + "graphql" : ctxRoot + "/graphql";
                     updateApiUrl(originalPath, pathToUpdatedRenderJs,  graphQlPath);
-                    VFS.mountReal(pathToUpdatedRenderJs.toFile(), renderJsFile);
+                    mountedOverlay = VFS.mountReal(pathToUpdatedRenderJs.toFile(), renderJsFile);
                 }
             }
         } catch (Exception e) {
@@ -112,6 +115,12 @@ public class GraphiQLUIDeploymentProcessor implements DeploymentUnitProcessor {
 
     @Override
     public void undeploy(DeploymentUnit context) {
-
+        if (mountedOverlay != null) {
+            try {
+                mountedOverlay.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
