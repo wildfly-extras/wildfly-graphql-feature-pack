@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping;
+package org.wildfly.extras.graphql.test.multipledeployments.overlapping;
 
 import io.restassured.RestAssured;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -24,6 +24,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.extras.graphql.test.TestHelper;
@@ -33,37 +34,41 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.wildfly.extras.graphql.test.TestHelper.MEDIATYPE_JSON;
 
 /**
- * Try running two deployments at once. In this case, they don't have any overlap in terms of Java package names.
+ * Try running two deployments at once. In this case, they have an overlap in terms of Java classes
+ *
+ * Currently fails due to https://github.com/graphql-java/graphql-java/issues/1983
+ * When multiple deployments share the same classes (class names) or when one deployment is redeployed, querying fails
+ * because of clashes in caching keys.
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class NonOverlappingMultipleDeploymentsTestCase {
+@Ignore // until https://github.com/graphql-java/graphql-java/issues/1983 is fixed and incorporated
+public class OverlappingMultipleDeploymentsTestCase {
 
-    @Deployment(name = "deployment1")
+    @Deployment(name = "dep1")
     public static WebArchive deployment1() {
-        return ShrinkWrap.create(WebArchive.class, "deployment1.war")
+        return ShrinkWrap.create(WebArchive.class, "dep1.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsManifestResource(new StringAsset("age=16"), "microprofile-config.properties")
-                .addPackage("org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep1");
+                .addPackage("org.wildfly.extras.graphql.test.multipledeployments.overlapping.deployment");
     }
 
-    @Deployment(name = "deployment2")
+    @Deployment(name = "dep2")
     public static WebArchive deployment2() {
-        return ShrinkWrap.create(WebArchive.class, "deployment2.war")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+        return ShrinkWrap.create(WebArchive.class, "dep2.war")
                 .addAsManifestResource(new StringAsset("age=25"), "microprofile-config.properties")
-                .addPackage("org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep2");
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addPackage("org.wildfly.extras.graphql.test.multipledeployments.overlapping.deployment");
     }
 
     @Test
     public void tryInvokingBothDeployments() {
         String query = TestHelper.getPayload("{ person { age } }");
         // in deployment1, the age should be 16, in deployment2 it should be 25
-        // so this also verifies that deployments can clash in terms of query names
         RestAssured.given()
                 .body(query)
                 .contentType(MEDIATYPE_JSON)
-                .post("/deployment1/graphql")
+                .post("/dep1/graphql")
                 .then()
                 .log().body()
                 .assertThat()
@@ -72,7 +77,7 @@ public class NonOverlappingMultipleDeploymentsTestCase {
         RestAssured.given()
                 .body(query)
                 .contentType(MEDIATYPE_JSON)
-                .post("/deployment2/graphql")
+                .post("/dep2/graphql")
                 .then()
                 .log().body()
                 .assertThat()

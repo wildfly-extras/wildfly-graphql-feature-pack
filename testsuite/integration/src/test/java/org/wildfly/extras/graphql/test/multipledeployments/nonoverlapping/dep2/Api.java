@@ -16,14 +16,22 @@
 
 package org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep2;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
+
+import javax.inject.Inject;
 
 @GraphQLApi
 public class Api {
 
+    @Inject
+    @ConfigProperty(name = "age")
+    Integer age;
+
     @Query
     public Person getPerson() {
-        return new Person(25);
+        // returns a different number than the same class from deployment1 so that we're able to see which deployment we're really invoking
+        return new Person(age);
     }
 }

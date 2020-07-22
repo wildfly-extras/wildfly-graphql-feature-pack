@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep1;
+package org.wildfly.extras.graphql.test.multipledeployments.overlapping.deployment;
 
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.eclipse.microprofile.graphql.GraphQLApi;
-import org.eclipse.microprofile.graphql.Query;
+public class Person {
 
-import javax.inject.Inject;
+    private Integer age;
 
-@GraphQLApi
-public class Api {
+    public Person(Integer age) {
+        this.age = age;
+    }
 
-    @Inject
-    @ConfigProperty(name = "age")
-    Integer age;
+    public Integer getAge() {
+        return age;
+    }
 
-    @Query
-    public Person getPerson() {
-        // returns a different number than the same class from deployment2 so that we're able to see which deployment we're really invoking
-        return new Person(age);
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

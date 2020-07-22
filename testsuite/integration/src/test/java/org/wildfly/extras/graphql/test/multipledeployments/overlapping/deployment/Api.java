@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep1;
+package org.wildfly.extras.graphql.test.multipledeployments.overlapping.deployment;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.graphql.GraphQLApi;
@@ -31,7 +31,6 @@ public class Api {
 
     @Query
     public Person getPerson() {
-        // returns a different number than the same class from deployment2 so that we're able to see which deployment we're really invoking
         return new Person(age);
     }
 }
