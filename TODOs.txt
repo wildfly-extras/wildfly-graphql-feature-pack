@@ -1,9 +1,0 @@
-- Metrics integration + tests
-- OpenTracing integration + tests
-- GraphQL client
-- Security
-- Configuration in subsystem
-- Bean validation integration + tests
-- Fix problems when multiple GraphQL deployments exist (if possible)
-- Test coverage
-- A proper README
