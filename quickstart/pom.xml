@@ -29,6 +29,10 @@
     <name>WildFly MicroProfile GraphQL - Quickstart</name>
     <description>Quickstart for the WildFly implementation of MicroProfile GraphQL</description>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>

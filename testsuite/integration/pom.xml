@@ -28,6 +28,10 @@
     <artifactId>wildfly-microprofile-graphql-testsuite-integration</artifactId>
     <name>WildFly MicroProfile GraphQL - Integration Tests</name>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

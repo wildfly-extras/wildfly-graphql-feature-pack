@@ -28,6 +28,10 @@
     <artifactId>wildfly-microprofile-graphql-tck</artifactId>
     <name>WildFly MicroProfile GraphQL - Server TCK</name>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.wildfly.arquillian</groupId>

@@ -58,9 +58,8 @@
         <version.wildfly.maven.plugin>2.0.0.Final</version.wildfly.maven.plugin>
 
         <!-- Misc. -->
-        <!-- TODO -->
-<!--        <wildfly-extras.repo.scm.connection>git@github.com:wildfly-extras/wildfly-mp-reactive-feature-pack.git</wildfly-extras.repo.scm.connection>-->
-<!--        <wildfly-extras.repo.scm.url>https://github.com/wildfly-extras/wildfly-mp-reactive-feature-pack</wildfly-extras.repo.scm.url>-->
+        <wildfly-extras.repo.scm.connection>git@github.com:wildfly-extras/wildfly-graphql-feature-pack.git</wildfly-extras.repo.scm.connection>
+        <wildfly-extras.repo.scm.url>https://github.com/wildfly-extras/wildfly-graphql-feature-pack</wildfly-extras.repo.scm.url>
         <!-- Protocol to use for communication with remote maven repositories.
             You can set to 'http' if you are using a maven proxy and 'https'
             interferes with that. Use 'https' for builds that will be released
@@ -290,19 +289,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!-- TODO feature pack -->
-<!--            <dependency>-->
-<!--                <groupId>${project.groupId}</groupId>-->
-<!--                <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>-->
-<!--                <version>${project.version}</version>-->
-<!--                <type>pom</type>-->
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>*</groupId>-->
-<!--                        <artifactId>*</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>
@@ -424,13 +410,12 @@
             </plugin>
         </plugins>
     </build>
-    <!-- TODO -->
-    <!--<scm>
+    <scm>
         <connection>scm:git:${wildfly-extras.repo.scm.connection}</connection>
         <developerConnection>scm:git:${wildfly-extras.repo.scm.connection}</developerConnection>
         <url>${wildfly-extras.repo.scm.url}</url>
         <tag>HEAD</tag>
-    </scm>-->
+    </scm>
     <modules>
         <module>subsystem</module>
         <module>feature-pack</module>
