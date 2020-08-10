@@ -20,6 +20,9 @@ This installs a full WildFly installation and everything from this feature pack 
 Later we will look at what the above command means, other ways to install the server and how to tweak what is
 installed. 
 
+**For development purposes, one way to obtain a WildFly distribution with a snapshot of this feature pack installed is to simply build the contents of this repository.
+After building (mvn clean install), it will appear under build/target/wildfly-$VERSION. The Galleon definition of what will be included can be found in build/pom.xml.**
+
 -------------
 
 ## Quickstarts
