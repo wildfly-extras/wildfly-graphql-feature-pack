@@ -24,7 +24,7 @@
 
     <groupId>org.wildfly.extras.graphql</groupId>
     <artifactId>wildfly-microprofile-graphql-parent</artifactId>
-    <version>1.0.0.Beta1</version>
+    <version>1.0.0.Beta2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>WildFly MicroProfile GraphQL - Parent</name>
     <description>WildFly implementation of MicroProfile GraphQL</description>
