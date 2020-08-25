@@ -10,6 +10,7 @@ import org.eclipse.microprofile.graphql.Source;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @GraphQLApi
 public class FilmResource {
@@ -47,6 +48,11 @@ public class FilmResource {
     @Query
     public List<Hero> getHeroesWithSurname(@DefaultValue("Skywalker") String surname) {
         return service.getHeroesBySurname(surname);
+    }
+
+    @Name("desc")
+    public List<String> desc(@Source List<Film> films) {
+        return films.stream().map(film -> "Awesome").collect(Collectors.toList());
     }
 
 }
