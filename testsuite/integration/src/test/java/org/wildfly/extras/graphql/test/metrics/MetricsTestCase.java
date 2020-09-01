@@ -22,6 +22,7 @@ import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.metrics.MetricID;
 import org.eclipse.microprofile.metrics.MetricRegistry;
 import org.eclipse.microprofile.metrics.SimpleTimer;
+import org.eclipse.microprofile.metrics.Tag;
 import org.eclipse.microprofile.metrics.annotation.RegistryType;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
@@ -77,7 +78,8 @@ public class MetricsTestCase {
     @Test
     @InSequence(2)
     public void verifyMetrics() {
-        SimpleTimer simpleTimer = metricRegistry.getSimpleTimers().get(new MetricID("mp_graphql_Query_hello"));
+        SimpleTimer simpleTimer = metricRegistry.getSimpleTimers().get(new MetricID("mp_graphql",
+                new Tag("type", "Query"), new Tag("name", "hello")));
         Assert.assertNotNull("Can't find expected metrics in the registry", simpleTimer);
         Assert.assertEquals(1L, simpleTimer.getCount());
     }
