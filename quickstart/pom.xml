@@ -70,43 +70,24 @@
         </dependency>
 
 
-        <!-- Following are dependencies needed for the client. This is only used in the tests. -->
-        <!-- TODO: this should be cleaned up after https://github.com/smallrye/smallrye-graphql/issues/407 has a resolution -->
+        <!-- Needed for the client. This is only used in the tests. -->
         <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>smallrye-graphql-client</artifactId>
             <version>${version.io.smallrye.graphql}</version>
             <scope>test</scope>
         </dependency>
+        <!-- FIXME: the following two deps for the client should not be necessary, but since we're inheriting from the
+            wildfly component matrix here and there are some version conflicts, I had to add them. Find a way to simplify the pom -->
         <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>2.30</version>
-            <scope>test</scope>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>4.5.6.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.jersey.inject</groupId>
-            <artifactId>jersey-hk2</artifactId>
-            <version>2.30</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>javax.json</artifactId>
-            <version>1.1.4</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.smallrye.config</groupId>
-            <artifactId>smallrye-config</artifactId>
-            <version>1.9.0</version>
-            <scope>test</scope>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <!-- Other dependencies needed for the testing infrastructure -->
