@@ -77,18 +77,35 @@
             <version>${version.io.smallrye.graphql}</version>
             <scope>test</scope>
         </dependency>
-        <!-- FIXME: the following two deps for the client should not be necessary, but since we're inheriting from the
-            wildfly component matrix here and there are some version conflicts, I had to add them. Find a way to simplify the pom -->
+        <!-- temporarily adding missing client dependencies until we upgrade to SR-GQL 1.0.12 and switch to smallrye-graphql-client-all -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye.config</groupId>
+            <artifactId>smallrye-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>2.1.6</version>
+        </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-client</artifactId>
-            <version>4.5.6.Final</version>
+            <version>4.5.8.Final</version>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
         </dependency>
+        <!-- / end client dependencies -->
 
         <!-- Other dependencies needed for the testing infrastructure -->
         <dependency>
