@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.wildfly.extras.quickstart.microprofile.graphql;
+package org.wildfly.extras.quickstart.microprofile.graphql.test;
 
 import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -26,6 +26,9 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.wildfly.extras.quickstart.microprofile.graphql.Film;
+import org.wildfly.extras.quickstart.microprofile.graphql.Hero;
+import org.wildfly.extras.quickstart.microprofile.graphql.LightSaber;
 
 import java.util.List;
 
@@ -34,7 +37,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Arquillian.class)
 public class GraphQLClientTestCase {
 
-    @Deployment(name = "server")
+    @Deployment(name = "server", testable = false)
     public static WebArchive serverDeployment() {
         return ShrinkWrap.create(WebArchive.class, "server.war")
                 .addPackage(Film.class.getPackage())
