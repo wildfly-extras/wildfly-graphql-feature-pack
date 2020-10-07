@@ -18,12 +18,12 @@ package org.wildfly.extras.quickstart.microprofile.graphql;
 
 import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -32,28 +32,32 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-@RunAsClient
 public class GraphQLClientTestCase {
 
-    @Deployment
-    public static WebArchive deployment() {
-        return ShrinkWrap.create(WebArchive.class, "quickstart-test.war")
+    @Deployment(name = "server")
+    public static WebArchive serverDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "server.war")
                 .addPackage(Film.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-
-    private GalaxyClientApi client;
-
-    @Before
-    public void initializeClient() {
-        client = GraphQlClientBuilder.newBuilder()
-                .endpoint("http://localhost:8080/quickstart-test/graphql")
-                .build(GalaxyClientApi.class);
+    @Deployment(name = "client")
+    public static WebArchive clientDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "client.war")
+                // only include the model classes plus the client-side API interface, not the GraphQL API implementation
+                .addClasses(Film.class, Hero.class, LightSaber.class, GalaxyClientApi.class)
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                // depend on the client libraries included in the feature pack as static modules
+                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client services\n"), "MANIFEST.MF");
     }
 
     @Test
+    @OperateOnDeployment("client")
     public void testGetAllFilms() {
+        GalaxyClientApi client = GraphQlClientBuilder.newBuilder()
+                .endpoint("http://localhost:8080/server/graphql")
+                .build(GalaxyClientApi.class);
+
         List<Film> allFilms = client.getAllFilms();
 
         Film aNewHope = allFilms.get(0);
