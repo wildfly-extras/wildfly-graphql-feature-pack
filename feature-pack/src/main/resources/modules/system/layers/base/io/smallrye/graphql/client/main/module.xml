@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright 2019 Red Hat, Inc.
   ~
@@ -15,19 +14,19 @@
   ~ limitations under the License.
   -->
 
-<layer-spec xmlns="urn:jboss:galleon:layer-spec:1.0" name="graphql">
+<module xmlns="urn:jboss:module:1.9" name="io.smallrye.graphql.client">
+
+    <resources>
+        <artifact name="${io.smallrye:smallrye-graphql-client}"/>
+    </resources>
+
     <dependencies>
-        <layer name="cdi"/>
-        <layer name="microprofile-config"/>
+        <module name="io.smallrye.graphql.client.api" export="true"/>
+        <module name="org.jboss.resteasy.resteasy-jaxrs"/>
+        <module name="javax.ws.rs.api"/>
+        <module name="org.slf4j"/>
+        <module name="org.eclipse.microprofile.config.api"/>
+        <module name="io.smallrye.config"/>
+        <module name="javax.enterprise.api"/>
     </dependencies>
-
-    <feature-group name="graphql"/>
-
-    <packages>
-        <package name="org.wildfly.extension.microprofile.graphql-smallrye"/>
-        <package name="io.smallrye.graphql"/>
-        <package name="io.smallrye.graphql.api"/>
-        <package name="io.smallrye.graphql.client"/>
-        <package name="io.smallrye.graphql.client.api"/>
-    </packages>
-</layer-spec>
+</module>
