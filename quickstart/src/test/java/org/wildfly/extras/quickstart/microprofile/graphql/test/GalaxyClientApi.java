@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package org.wildfly.extras.quickstart.microprofile.graphql;
+package org.wildfly.extras.quickstart.microprofile.graphql.test;
 
 import io.smallrye.graphql.client.typesafe.api.GraphQlClientApi;
+import org.wildfly.extras.quickstart.microprofile.graphql.Film;
 
 import java.util.List;
 

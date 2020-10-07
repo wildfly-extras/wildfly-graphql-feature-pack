@@ -1,5 +1,5 @@
 package org.wildfly.extras.quickstart.microprofile.graphql;
 
-enum LightSaber {
+public enum LightSaber {
     RED, BLUE, GREEN, PURPLE
 }
