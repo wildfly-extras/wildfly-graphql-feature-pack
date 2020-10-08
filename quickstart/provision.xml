@@ -29,7 +29,7 @@
             <include name="docs.licenses"/>
         </packages>
     </feature-pack>
-    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta1">
+    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta2">
         <default-configs inherit="false"/>
         <packages inherit="false">
             <!-- If docs/licenses is desired, uncomment this line -->
