@@ -29,7 +29,7 @@
             <includes>
                 <include>modules/system/layers/base/org/eclipse/microprofile/graphql/**</include>
                 <include>modules/system/layers/base/io/smallrye/graphql/**</include>
-                <include>modules/system/layers/base/org/wildfly/extension/microprofile/graphql-smallrye/**  </include>
+                <include>modules/system/layers/base/org/wildfly/extension/microprofile/graphql-smallrye/**</include>
             </includes>
         </fileSet>
     </fileSets>
