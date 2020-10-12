@@ -62,8 +62,9 @@
                 <groupId>org.jboss.galleon</groupId>
                 <artifactId>galleon-maven-plugin</artifactId>
                 <executions>
+                    <!-- Thin Maven distribution of WildFly -->
                     <execution>
-                        <id>server-provisioning</id>
+                        <id>server-provisioning-thin</id>
                         <goals>
                             <goal>provision</goal>
                         </goals>
@@ -109,14 +110,62 @@
                             </plugin-options>
                         </configuration>
                     </execution>
+                    <!-- Full distribution of WildFly (with JARs included) -->
+                    <execution>
+                        <id>server-provisioning-full</id>
+                        <goals>
+                            <goal>provision</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <install-dir>${project.build.directory}/${project.build.finalName}-full</install-dir>
+                            <record-state>false</record-state>
+                            <log-time>${galleon.log.time}</log-time>
+                            <offline>true</offline>
+                            <feature-packs>
+                                <feature-pack>
+                                    <transitive>true</transitive>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-galleon-pack</artifactId>
+                                    <version>${version.org.wildfly}</version>
+                                    <inherit-packages>false</inherit-packages>
+                                    <inherit-configs>false</inherit-configs>
+                                </feature-pack>
+                                <feature-pack>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>
+                                    <version>${project.version}</version>
+                                    <inherit-packages>false</inherit-packages>
+                                    <inherit-configs>false</inherit-configs>
+                                </feature-pack>
+                            </feature-packs>
+                            <configurations>
+                                <config>
+                                    <model>standalone</model>
+                                    <name>standalone.xml</name>
+                                    <layers>
+                                        <layer>cloud-profile</layer>
+                                        <layer>core-tools</layer>
+                                        <!-- Layers from this FP -->
+                                        <layer>graphql</layer>
+                                    </layers>
+                                </config>
+                            </configurations>
+                            <plugin-options>
+                                <jboss-fork-embedded>${galleon.fork.embedded}</jboss-fork-embedded>
+                                <optional-packages>passive+</optional-packages>
+                            </plugin-options>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
+                    <!-- Create a ZIP of the thin (Maven-based) WildFly distribution -->
                     <execution>
-                        <id>assemble</id>
+                        <id>assemble-thin</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -127,6 +176,44 @@
                             </descriptors>
                             <recompressZippedFiles>true</recompressZippedFiles>
                             <finalName>${project.build.finalName}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <workDirectory>${project.build.directory}/assembly/work</workDirectory>
+                            <tarLongFileMode>gnu</tarLongFileMode>
+                        </configuration>
+                    </execution>
+                    <!-- Create a ZIP of the full WildFly distribution (with JARs included) -->
+                    <execution>
+                        <id>assemble-full</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly-full.xml</descriptor>
+                            </descriptors>
+                            <recompressZippedFiles>true</recompressZippedFiles>
+                            <finalName>${project.build.finalName}-full</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <workDirectory>${project.build.directory}/assembly/work</workDirectory>
+                            <tarLongFileMode>gnu</tarLongFileMode>
+                        </configuration>
+                    </execution>
+                    <!-- Out of the full WildFly distribution, create a zip overlay -->
+                    <execution>
+                        <id>assemble-zip-overlay</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly-zip-overlay.xml</descriptor>
+                            </descriptors>
+                            <recompressZippedFiles>true</recompressZippedFiles>
+                            <finalName>${project.build.finalName}-overlay</finalName>
                             <appendAssemblyId>false</appendAssemblyId>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <workDirectory>${project.build.directory}/assembly/work</workDirectory>
