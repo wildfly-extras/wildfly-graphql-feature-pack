@@ -45,7 +45,7 @@
         <version.org.jboss.galleon>4.2.5.Final</version.org.jboss.galleon>
 
         <!-- Other dependency versions -->
-        <version.io.smallrye.graphql>1.0.13</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>1.0.14</version.io.smallrye.graphql>
         <version.com.graphql-java>15.0</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.7.2</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
