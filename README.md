@@ -120,13 +120,10 @@ result will be the same as the zip you download from the [wildfly.org downloads 
 ```
 galleon.sh install wildfly:current --dir=wildfly
 ```
-The `wildfly:current` above tells Galleon to provision the latest version of WildFly which
-at the time of writing is 20.0.0.Final. If you want to install a particular version of 
+The `wildfly:current` above tells Galleon to provision the latest version of WildFly. If you want to install a particular version of 
 WildFly, you can append the version, e.g:
 
-* `wildfly:current#21.0.0.Beta3-SNAPSHOT` - installs WildFly from locally build maven artifacts
-
-Note that the minimal supported WildFly version for this feature pack is 20.0.0.Final. 
+* `wildfly:current#21.0.0.Beta3-SNAPSHOT` - installs WildFly from locally built maven artifacts
 
 `--dir` specifies the directory to install the server into. In this case I am using 
 a relative directory called `wildfly`. 
@@ -151,6 +148,9 @@ Now to install our feature pack, we can run:
 galleon.sh install org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta2 --layers=graphql --dir=wildfly
 ``` 
 which will install all the layers from the MicroProfile GraphQL feature pack.
+
+#### Supported WildFly versions
+Currently we test with WildFly 20 and 21.
 
 ----
 ## References
