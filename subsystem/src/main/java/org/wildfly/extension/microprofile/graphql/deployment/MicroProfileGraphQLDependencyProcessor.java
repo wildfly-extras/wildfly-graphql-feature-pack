@@ -38,9 +38,10 @@ public class MicroProfileGraphQLDependencyProcessor implements DeploymentUnitPro
         if(!compositeIndex.getAnnotations(ANNOTATION_GRAPHQL_API).isEmpty()) {
             final ModuleSpecification moduleSpecification = deploymentUnit.getAttachment(Attachments.MODULE_SPECIFICATION);
             final ModuleLoader moduleLoader = Module.getBootModuleLoader();
-            moduleSpecification.addSystemDependency(new ModuleDependency(moduleLoader, "io.smallrye.graphql", false, false, true, false));
-//            org.eclipse.microprofile.graphql.api
-//            moduleSpecification.addSystemDependency(new ModuleDependency(moduleLoader, "org.eclipse.microprofile.graphql.api", false, false, true, false));
+            ModuleDependency dependency = new ModuleDependency(moduleLoader, "io.smallrye.graphql", false, false, true, false);
+            // this is an equivalent of meta-inf="import" in jboss-deployment-structure.xml and is needed to be able to see CDI beans from the module
+            dependency.addImportFilter(s -> s.equals("META-INF"), true);
+            moduleSpecification.addSystemDependency(dependency);
         }
     }
 
