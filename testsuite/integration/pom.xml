@@ -36,6 +36,21 @@
         <version.jakarta-validation>2.0.2</version.jakarta-validation>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client-api</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -120,6 +135,13 @@
             <artifactId>jakarta.validation-api</artifactId>
             <version>${version.jakarta-validation}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-graphql-client-all</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+            <version>${version.io.smallrye.graphql}</version>
         </dependency>
     </dependencies>
 
