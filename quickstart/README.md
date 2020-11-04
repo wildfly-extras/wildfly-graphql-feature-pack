@@ -48,6 +48,12 @@ query allFilms {
 }   
 ```
 
+Note: The equivalent query can be executed via curl by
+```
+curl -X POST localhost:8080/quickstart/graphql -d'{"query": "{allFilms{title director releaseDate episodeID}}"}'
+```
+
+
 Since our query contains all the fields in the Film class we will retrieve all the fields in our response. 
 Since GraphQL API responses are client determined, the client can choose which fields it will require.
 
