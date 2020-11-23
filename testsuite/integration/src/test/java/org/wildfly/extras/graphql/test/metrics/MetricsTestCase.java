@@ -79,7 +79,9 @@ public class MetricsTestCase {
     @InSequence(2)
     public void verifyMetrics() {
         SimpleTimer simpleTimer = metricRegistry.getSimpleTimers().get(new MetricID("mp_graphql",
-                new Tag("type", "Query"), new Tag("name", "hello")));
+                new Tag("type", "QUERY"),
+                new Tag("name", "hello"),
+                new Tag("source", "false")));
         Assert.assertNotNull("Can't find expected metrics in the registry", simpleTimer);
         Assert.assertEquals(1L, simpleTimer.getCount());
     }
