@@ -24,7 +24,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.extras.graphql.test.TestHelper;
@@ -35,14 +34,9 @@ import static org.wildfly.extras.graphql.test.TestHelper.MEDIATYPE_JSON;
 
 /**
  * Try running two deployments at once. In this case, they have an overlap in terms of Java classes
- *
- * Currently fails due to https://github.com/graphql-java/graphql-java/issues/1983
- * When multiple deployments share the same classes (class names) or when one deployment is redeployed, querying fails
- * because of clashes in caching keys.
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-@Ignore // until https://github.com/graphql-java/graphql-java/issues/1983 is fixed and incorporated
 public class OverlappingMultipleDeploymentsTestCase {
 
     @Deployment(name = "dep1")
