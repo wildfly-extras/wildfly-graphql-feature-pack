@@ -64,11 +64,11 @@ are interested in another/newer WildFly version, adjust the tag name in the URL.
 -------------
 ## Layer in this Feature Pack 
 
-The `graphql` layer from this feature pack is contained in the 
+The `microprofile-graphql` layer from this feature pack is contained in the 
 [feature-pack/src/main/resources/layers/standalone](feature-pack/src/main/resources/layers/standalone)
 folder.
 
-The `graphql` layer installs the `microprofile-graphql-smallrye` subsystem, so you can use
+The `microprofile-graphql` layer installs the `microprofile-graphql-smallrye` subsystem, so you can use
 the MicroProfile [GraphQL](https://github.com/eclipse/microprofile-graphql) APIs 
 from your application.
 
@@ -145,7 +145,7 @@ can rerun the above command, and pass in more layers in the `--layers` option if
 #### Install the MicroProfile GraphQL Feature Pack
 Now to install our feature pack, we can run:
 ```
-galleon.sh install org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta2 --layers=graphql --dir=wildfly
+galleon.sh install org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta2 --layers=microprofile-graphql --dir=wildfly
 ``` 
 which will install all the layers from the MicroProfile GraphQL feature pack.
 
