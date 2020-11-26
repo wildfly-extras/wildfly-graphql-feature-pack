@@ -145,7 +145,7 @@ can rerun the above command, and pass in more layers in the `--layers` option if
 #### Install the MicroProfile GraphQL Feature Pack
 Now to install our feature pack, we can run:
 ```
-galleon.sh install org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Beta2 --layers=microprofile-graphql --dir=wildfly
+galleon.sh install org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.0.0.Final --layers=microprofile-graphql --dir=wildfly
 ``` 
 which will install all the layers from the MicroProfile GraphQL feature pack.
 
