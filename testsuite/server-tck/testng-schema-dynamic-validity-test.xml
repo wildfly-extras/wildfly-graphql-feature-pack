@@ -1,4 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!-- this file is currently unused, see surefire plugin configuration in pom.xml for explanation -->
 <suite name="MicroProfile_GraphQL2" verbose="1">
     <listeners>
         <listener class-name="org.wildfly.extras.graphql.tck.TestInterceptor" />

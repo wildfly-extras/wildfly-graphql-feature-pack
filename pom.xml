@@ -50,7 +50,7 @@
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
         <version.org.reactivestreams>1.0.2</version.org.reactivestreams>
-        <version.org.eclipse.microprofile.graphql>1.0.2</version.org.eclipse.microprofile.graphql>
+        <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
