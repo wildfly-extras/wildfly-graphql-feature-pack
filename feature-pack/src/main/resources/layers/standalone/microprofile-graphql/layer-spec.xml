@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<layer-spec xmlns="urn:jboss:galleon:layer-spec:1.0" name="graphql">
+<layer-spec xmlns="urn:jboss:galleon:layer-spec:1.0" name="microprofile-graphql">
     <dependencies>
         <layer name="cdi"/>
         <layer name="microprofile-config"/>

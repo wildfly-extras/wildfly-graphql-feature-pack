@@ -193,7 +193,7 @@
                                         <layer>jmx-remoting</layer>
                                         <layer>observability</layer>
                                         <!-- Layers from this FP -->
-                                        <layer>graphql</layer>
+                                        <layer>microprofile-graphql</layer>
                                     </layers>
                                 </config>
                             </configurations>
