@@ -99,7 +99,7 @@
                                         <layer>cloud-profile</layer>
                                         <layer>core-tools</layer>
                                         <!-- Layers from this FP -->
-                                        <layer>graphql</layer>
+                                        <layer>microprofile-graphql</layer>
                                     </layers>
                                 </config>
                             </configurations>
@@ -147,7 +147,7 @@
                                         <layer>cloud-profile</layer>
                                         <layer>core-tools</layer>
                                         <!-- Layers from this FP -->
-                                        <layer>graphql</layer>
+                                        <layer>microprofile-graphql</layer>
                                     </layers>
                                 </config>
                             </configurations>

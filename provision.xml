@@ -44,7 +44,7 @@
             <!-- The base server -->
             <include name="cloud-profile"/>
 
-            <include name="graphql"/>
+            <include name="microprofile-graphql"/>
         </layers>
     </config>
     <options>

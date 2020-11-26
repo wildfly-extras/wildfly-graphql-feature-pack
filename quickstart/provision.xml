@@ -43,7 +43,7 @@
             <include name="jmx-remoting"/>
             <include name="management"/>
             <!-- Layers from this FP -->
-            <include name="graphql"/>
+            <include name="microprofile-graphql"/>
         </layers>
     </config>
     <options>
