@@ -132,12 +132,29 @@
                         <server.jvm.args>${server.jvm.args}</server.jvm.args>
                     </systemPropertyVariables>
                 </configuration>
-                <!-- FIXME: we currently have an execution for each test separately, because
-                    currently the subsystem doesn't work correctly with multiple deployments,
-                    so this is to force a new WildFly instance per each test class. Once we figure out
-                    how to handle multiple deployments in one run, use the default-test execution only -->
                 <executions>
                     <execution>
+                        <id>default-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>testng.xml</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </execution>
+                    <!--
+                        Normally we use only the main testng.xml suite which contains all tests. In the past, there have been
+                        problems with having multiple GraphQL deployments in the same JVM, which led to failing TCK tests when
+                        all tests were included in the same suite. For that reason, should anything like that happen again,
+                        switching from default-test to the following separate executions with separate suite files can be used to work around this.
+                        Each suite contains just one test, and each suite will run in a separate WildFly instance, therefore the
+                        multiple deployment problem should not arise. I hope this won't ever be needed anymore, but keeping
+                        it just to be sure.
+                    -->
+                    <!--<execution>
                         <id>SchemaDynamicValidityTest</id>
                         <goals>
                             <goal>test</goal>
@@ -160,11 +177,7 @@
                                 <suiteXmlFile>testng-execution-dynamic-test.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
-                    </execution>
-                    <execution>   <!-- skip the default surefire execution -->
-                        <id>default-test</id>
-                        <phase>none</phase>
-                    </execution>
+                    </execution>-->
                 </executions>
             </plugin>
         </plugins>
