@@ -46,6 +46,13 @@
             </packages>
             <default-configs inherit="false"/>
         </dependency>
+        <dependency group-id="org.wildfly.extras.reactive" artifact-id="wildfly-microprofile-reactive-feature-pack">
+            <name>org.wildfly:wildfly-microprofile-reactive-feature-pack</name>
+            <packages inherit="false">
+                <include name="docs.examples"/>
+            </packages>
+            <default-configs inherit="false"/>
+        </dependency>
     </dependencies>
     <default-packages>
         <package name="modules.all"/>

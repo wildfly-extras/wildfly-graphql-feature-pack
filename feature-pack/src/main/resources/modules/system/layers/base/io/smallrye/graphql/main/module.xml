@@ -39,6 +39,11 @@
         <module name="org.eclipse.microprofile.config.api"/>
         <module name="org.eclipse.microprofile.graphql.api" export="true"/>
 
+        <!-- from the reactive feature pack -->
+        <module name="io.smallrye.context-propagation"/>
+        <module name="org.eclipse.microprofile.context-propagation.api"/>
+        <module name="io.smallrye.reactive.mutiny"/>
+
         <module name="org.jboss.weld.api"/>
         <module name="org.jboss.weld.core"/>
         <module name="org.jboss.weld.spi"/>
