@@ -46,7 +46,7 @@
         <version.org.wildfly.reactive-feature-pack>1.0.1.Final</version.org.wildfly.reactive-feature-pack>
 
         <!-- Other dependency versions -->
-        <version.io.smallrye.graphql>1.0.19</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>1.0.20</version.io.smallrye.graphql>
         <version.com.graphql-java>16.1</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
