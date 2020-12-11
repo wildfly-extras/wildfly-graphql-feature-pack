@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wildfly: [20.0.1.Final]
+        wildfly: [20.0.1.Final, 21.0.1.Final]
     name: build with wildfly ${{matrix.wildfly}}
 
     steps:
@@ -61,7 +61,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-maven-wf-${{ matrix.wildfly }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
