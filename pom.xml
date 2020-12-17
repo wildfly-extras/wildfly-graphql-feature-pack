@@ -46,6 +46,7 @@
         <version.org.wildfly.reactive-feature-pack>1.0.1.Final</version.org.wildfly.reactive-feature-pack>
 
         <!-- Other dependency versions -->
+        <version.io.smallrye.reactive.mutiny>0.11.0</version.io.smallrye.reactive.mutiny>
         <version.io.smallrye.graphql>1.0.20</version.io.smallrye.graphql>
         <version.com.graphql-java>16.1</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
@@ -212,6 +213,17 @@
                 <groupId>io.smallrye</groupId>
                 <artifactId>smallrye-graphql-client</artifactId>
                 <version>${version.io.smallrye.graphql}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye.reactive</groupId>
+                <artifactId>mutiny</artifactId>
+                <version>${version.io.smallrye.reactive.mutiny}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>*</groupId>
