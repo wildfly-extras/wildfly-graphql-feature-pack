@@ -143,6 +143,14 @@
             <type>pom</type>
             <version>${version.io.smallrye.graphql}</version>
         </dependency>
+        <dependency>
+            <groupId>io.smallrye.reactive</groupId>
+            <artifactId>mutiny</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-graphql-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
