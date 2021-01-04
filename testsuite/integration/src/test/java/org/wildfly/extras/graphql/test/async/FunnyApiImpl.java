@@ -10,7 +10,7 @@ public class FunnyApiImpl implements FunnyApi {
     public CompletionStage<Funny> getRandomFunnyAsync() {
         return CompletableFuture.supplyAsync(() -> {
             Funny funny = new Funny();
-            funny.setNumber(ThreadLocalRandom.current().nextInt(0, 1000) + 1000);
+            funny.setNumber(ThreadLocalRandom.current().nextInt(1, 1000) + 1000);
             return funny;
         });
     }
@@ -28,7 +28,7 @@ public class FunnyApiImpl implements FunnyApi {
     @Override
     public Funny getRandomFunny() {
         Funny funny = new Funny();
-        funny.setNumber(ThreadLocalRandom.current().nextInt(0, 1000));
+        funny.setNumber(ThreadLocalRandom.current().nextInt(1, 1000));
         return funny;
     }
 
