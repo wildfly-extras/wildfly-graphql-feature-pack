@@ -24,7 +24,7 @@
 
     <groupId>org.wildfly.extras.graphql</groupId>
     <artifactId>wildfly-microprofile-graphql-parent</artifactId>
-    <version>1.1.1.Final-SNAPSHOT</version>
+    <version>1.2.0.Final-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>WildFly MicroProfile GraphQL - Parent</name>
     <description>WildFly implementation of MicroProfile GraphQL</description>
@@ -39,33 +39,33 @@
 
     <properties>
         <!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
-        <version.org.wildfly>21.0.2.Final</version.org.wildfly>
-        <version.org.wildfly.core>12.0.1.Final</version.org.wildfly.core>
+        <version.org.wildfly>23.0.0.Final</version.org.wildfly>
+        <version.org.wildfly.core>15.0.0.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.5.4.Final</version.org.wildfly.common>
-        <version.org.jboss.galleon>4.2.5.Final</version.org.jboss.galleon>
+        <version.org.jboss.galleon>4.2.7.Final</version.org.jboss.galleon>
 
         <!-- Other WildFly feature pack that we depend on -->
-        <version.org.wildfly.reactive-feature-pack>1.0.1.Final</version.org.wildfly.reactive-feature-pack>
+        <version.org.wildfly.reactive-feature-pack>2.0.0.Final</version.org.wildfly.reactive-feature-pack> 
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>1.0.24</version.io.smallrye.graphql>
-        <version.org.eclipse.microprofile.graphql>1.1</version.org.eclipse.microprofile.graphql>
+        <version.io.smallrye.graphql>1.1.0</version.io.smallrye.graphql>
+        <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
 
-        <!-- Dependencies which are not included directly in the built feature pack but are dragged from other places,
-             so they are here mostly just for compilation purposes -->
+        <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
+             so they are here mostly just for compilation and testing purposes -->
         <version.io.smallrye.reactive.mutiny>0.13.0</version.io.smallrye.reactive.mutiny>
-        <version.io.smallrye.config>1.6.2</version.io.smallrye.config>
-        <version.org.reactivestreams>1.0.2</version.org.reactivestreams>
+        <version.io.smallrye.config>2.1.0</version.io.smallrye.config>
+        <version.org.reactivestreams>1.0.3</version.org.reactivestreams>
         <version.elytron>1.13.1.Final</version.elytron>
-        <version.resteasy.client>4.5.8.Final</version.resteasy.client>
-        <version.microprofile-metrics-api>2.3.2</version.microprofile-metrics-api>
+        <version.resteasy.client>4.6.0.Final</version.resteasy.client>
+        <version.microprofile-metrics-api>3.0.1</version.microprofile-metrics-api>
         <version.jakarta-validation>2.0.2</version.jakarta-validation>
         <version.jakarta-jaxrs>2.1.6</version.jakarta-jaxrs>
-        <version.jakarta-cdi>2.0.1</version.jakarta-cdi>
+        <version.jakarta-cdi>2.0.2</version.jakarta-cdi>
 
         <!-- Testing-only dependencies -->
         <version.shrinkwrap>2.2.4</version.shrinkwrap>
@@ -73,7 +73,7 @@
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
-        <version.org.wildfly.galleon-plugins>4.2.5.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly.galleon-plugins>5.1.0.Final</version.org.wildfly.galleon-plugins>
         <version.wildfly.maven.plugin>2.0.0.Final</version.wildfly.maven.plugin>
 
         <!-- Misc. -->
@@ -418,6 +418,11 @@
                 <groupId>io.smallrye.config</groupId>
                 <artifactId>smallrye-config</artifactId>
                 <version>${version.io.smallrye.config}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${version.resteasy.client}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
