@@ -1,37 +1,21 @@
 <?xml version="1.0" ?>
 <!--
-  ~ Copyright 2019 Red Hat, Inc.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~   http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
-
-
-<!--
     USAGE:
         /path/to/galleon/bin/galleon.sh provision /path/to/this/provision.xml -dir=/path/to/created/wildfly/install/dir
     (note that `-dir` should have double hyphens, which don't work in XML comments!)
 -->
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
-    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current">
+    <!--  below here we specify the desired WildFly version -->
+    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#21.0.2.Final">
         <default-configs inherit="false"/>
         <packages inherit="false">
             <!-- If docs/licenses is desired, uncomment this line -->
             <!-- include name="docs.licenses"/ -->
         </packages>
     </feature-pack>
-    <!--
-        When relasing and updating the version here. Remember to also update the version in the main README!!!
-    -->
+    <!-- below here we specify the desired GraphQL feature pack version
+         see https://github.com/wildfly-extras/wildfly-graphql-feature-pack/wiki/Supported-versions-and-future-versions-roadmap for the list of supported FP versions depending on the used WildFly version
+	 -->
     <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.1.0.Final">
         <default-configs inherit="false"/>
         <packages inherit="false">
@@ -41,9 +25,7 @@
     </feature-pack>
     <config model="standalone" name="standalone.xml">
         <layers>
-            <!-- The base server -->
             <include name="cloud-profile"/>
-
             <include name="microprofile-graphql"/>
         </layers>
     </config>
