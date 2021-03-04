@@ -43,16 +43,23 @@
         <version.org.wildfly.core>12.0.1.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.5.4.Final</version.org.wildfly.common>
         <version.org.jboss.galleon>4.2.5.Final</version.org.jboss.galleon>
+
+        <!-- Other WildFly feature pack that we depend on -->
         <version.org.wildfly.reactive-feature-pack>1.0.1.Final</version.org.wildfly.reactive-feature-pack>
 
-        <!-- Other dependency versions -->
-        <version.io.smallrye.reactive.mutiny>0.11.0</version.io.smallrye.reactive.mutiny>
+        <!-- Libraries provided by this feature pack. These variables directly affect what will be in
+             the built feature pack. -->
         <version.io.smallrye.graphql>1.0.22</version.io.smallrye.graphql>
+        <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
+
+        <!-- Dependencies which are not included directly in the built feature pack but are dragged from other places,
+             so they are here mostly just for compilation purposes -->
+        <version.io.smallrye.reactive.mutiny>0.11.0</version.io.smallrye.reactive.mutiny>
         <version.org.reactivestreams>1.0.2</version.org.reactivestreams>
-        <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
+        <version.elytron>1.13.1.Final</version.elytron>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
@@ -356,12 +363,19 @@
                 <version>${version.org.wildfly.checkstyle-config}</version>
             </dependency>
 
-            <!-- tests -->
+            <!-- TCK -->
             <dependency>
                 <groupId>org.eclipse.microprofile.graphql</groupId>
                 <artifactId>microprofile-graphql-tck</artifactId>
                 <version>${version.org.eclipse.microprofile.graphql}</version>
                 <scope>test</scope>
+            </dependency>
+
+            <!-- Stuff used for testing only -->
+            <dependency>
+                <groupId>org.wildfly.security</groupId>
+                <artifactId>wildfly-elytron</artifactId>
+                <version>${version.elytron}</version>
             </dependency>
 
         </dependencies>
