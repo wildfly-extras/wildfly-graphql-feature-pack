@@ -30,6 +30,12 @@
                 <include>modules/system/layers/base/org/eclipse/microprofile/graphql/**</include>
                 <include>modules/system/layers/base/io/smallrye/graphql/**</include>
                 <include>modules/system/layers/base/org/wildfly/extension/microprofile/graphql-smallrye/**</include>
+                <!-- stuff from the reactive pack -->
+                <include>modules/system/layers/base/io/smallrye/context-propagation/**</include>
+                <include>modules/system/layers/base/io/smallrye/reactive/mutiny/context-propagation/**</include>
+                <include>modules/system/layers/base/org/eclipse/microprofile/context-propagation/**</include>
+                <include>modules/system/layers/base/org/wildfly/context-propagation/**</include>
+                <include>modules/system/layers/base/org/wildfly/extension/microprofile/context-propagation-smallrye/**</include>
             </includes>
         </fileSet>
     </fileSets>
