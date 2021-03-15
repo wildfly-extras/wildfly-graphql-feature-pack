@@ -6,7 +6,7 @@
 -->
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
     <!--  below here we specify the desired WildFly version -->
-    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#23.0.0.Beta1">
+    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#23.0.0.Final">
         <default-configs inherit="false"/>
     </feature-pack>
     <!-- below here we specify the desired GraphQL feature pack version
