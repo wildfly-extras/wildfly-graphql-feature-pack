@@ -14,19 +14,21 @@
   ~ limitations under the License.
   -->
 
-<module xmlns="urn:jboss:module:1.9" name="io.smallrye.graphql.client">
+<module xmlns="urn:jboss:module:1.9" name="io.smallrye.graphql.client.jaxrs">
 
     <resources>
-        <artifact name="${io.smallrye:smallrye-graphql-client}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-client-implementation-jaxrs}"/>
     </resources>
 
     <dependencies>
         <module name="io.smallrye.graphql.client.api" export="true"/>
+        <module name="io.smallrye.graphql.client.common" export="true"/>
         <module name="org.jboss.resteasy.resteasy-jaxrs"/>
         <module name="javax.ws.rs.api"/>
         <module name="org.slf4j"/>
         <module name="org.eclipse.microprofile.config.api"/>
         <module name="io.smallrye.config"/>
         <module name="javax.enterprise.api"/>
+        <module name="org.jboss.logging"/>
     </dependencies>
 </module>

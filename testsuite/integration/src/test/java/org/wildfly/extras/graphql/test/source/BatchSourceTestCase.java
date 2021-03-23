@@ -68,7 +68,7 @@ public class BatchSourceTestCase {
 
 
 
-    static class Person {
+    public static class Person {
 
         private String name;
 

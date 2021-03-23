@@ -32,6 +32,8 @@
     <modules>
         <module>integration</module>
         <module>server-tck</module>
+        <module>client-jaxrs</module>
+        <module>client-vertx</module>
     </modules>
 
     <properties>
