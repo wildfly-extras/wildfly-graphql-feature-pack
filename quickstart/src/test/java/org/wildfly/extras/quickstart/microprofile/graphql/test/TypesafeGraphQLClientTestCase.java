@@ -35,7 +35,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-public class GraphQLClientTestCase {
+public class TypesafeGraphQLClientTestCase {
 
     @Deployment(name = "server", testable = false)
     public static WebArchive serverDeployment() {
@@ -51,7 +51,7 @@ public class GraphQLClientTestCase {
                 .addClasses(Film.class, Hero.class, LightSaber.class, GalaxyClientApi.class)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // depend on the client libraries included in the feature pack as static modules
-                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client services\n"), "MANIFEST.MF");
+                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client.jaxrs services\n"), "MANIFEST.MF");
     }
 
     @Test

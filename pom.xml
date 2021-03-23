@@ -49,11 +49,14 @@
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>1.1.1</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>1.2.0.Alpha1</version.io.smallrye.graphql>
         <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
+        <!-- WF contains vert.x, but we need to add the vertx-web-client artifact. This version should be the same
+            as the vert.x version in WildFly -->
+        <version.vertx>4.0.2</version.vertx>
 
         <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
              so they are here mostly just for compilation and testing purposes -->
@@ -238,6 +241,28 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client-implementation-vertx</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client-implementation-jaxrs</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>io.smallrye.reactive</groupId>
                 <artifactId>mutiny</artifactId>
                 <version>${version.io.smallrye.reactive.mutiny}</version>
@@ -305,8 +330,28 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web-client</artifactId>
+                <version>${version.vertx}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web-common</artifactId>
+                <version>${version.vertx}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
             <!-- WildFly dependencies -->
             <dependency>
@@ -416,6 +461,11 @@
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-client</artifactId>
                 <version>${version.resteasy.client}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-core</artifactId>
+                <version>${version.vertx}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

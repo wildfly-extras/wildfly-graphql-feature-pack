@@ -69,7 +69,7 @@ public class ParametrizedBatchSourceTestCase {
 
 
 
-    static class Person {
+    public static class Person {
 
         private String name;
 
