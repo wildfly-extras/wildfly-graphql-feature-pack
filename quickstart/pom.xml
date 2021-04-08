@@ -35,6 +35,10 @@
         <!-- these are only relevant for testing -->
         <jboss.dist>${project.basedir}/target/wildfly</jboss.dist>
         <jboss.home>${jboss.dist}</jboss.home>
+        <!-- Where the testing WF instance will be bound.
+         If the user has already started their WF instance for experimenting with the quickstart, it is most likely
+         on 127.0.0.1, so let's try 127.0.0.2 to avoid clashing and run a separate instance. -->
+        <node0>127.0.0.2</node0>
     </properties>
 
     <licenses>
@@ -46,7 +50,6 @@
     </licenses>
 
     <!-- just override dependencyManagement from parent because we don't want to exclude transitive deps
-    TODO: the client example should probably moved to a separate quickstart
     -->
     <dependencyManagement>
         <dependencies>
@@ -92,7 +95,6 @@
         <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>smallrye-graphql-client-api</artifactId>
-            <version>${version.io.smallrye.graphql}</version>
             <scope>test</scope>
         </dependency>
 
@@ -183,6 +185,8 @@
                 <configuration>
                     <systemPropertyVariables combine.children="append">
                         <jboss.install.dir>${project.build.directory}/wildfly</jboss.install.dir>
+                        <server.jvm.args>-Djboss.bind.address=${node0} -Djboss.bind.address.management=${node0} -Djboss.bind.address.unsecure=${node0}</server.jvm.args>
+                        <node0>${node0}</node0>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
