@@ -1,6 +1,6 @@
 package org.wildfly.extras.graphql.test.client.jaxrs;
 
-import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
+import io.smallrye.graphql.client.typesafe.api.TypesafeGraphQLClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -28,7 +28,7 @@ public class TypesafeClientOutsideVMTestCase {
 
     @Test
     public void testCall() {
-        FunnyApi funnyApi = GraphQlClientBuilder.newBuilder().endpoint("http://localhost:8080/funny/graphql").build(FunnyApi.class);
+        FunnyApi funnyApi = TypesafeGraphQLClientBuilder.newBuilder().endpoint("http://localhost:8080/funny/graphql").build(FunnyApi.class);
         Funny funny = funnyApi.getRandomFunny();
         Assert.assertTrue(funny.getNumber() > 0);
         Assert.assertTrue(funny.getNumber() < 1000);

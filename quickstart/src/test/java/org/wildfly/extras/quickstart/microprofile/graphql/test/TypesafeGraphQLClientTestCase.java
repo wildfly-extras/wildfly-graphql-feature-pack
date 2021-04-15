@@ -16,7 +16,7 @@
 
 package org.wildfly.extras.quickstart.microprofile.graphql.test;
 
-import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
+import io.smallrye.graphql.client.typesafe.api.TypesafeGraphQLClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -65,7 +65,7 @@ public class TypesafeGraphQLClientTestCase {
         // ArquillianResource injects the URL of the deployment where we are running the test, so replace 'client' with 'server'
         // to get the context root of the 'server' deployment (which contains the GraphQL endpoint)
         String endpoint = url.toString().replace("client", "server") + "graphql";
-        GalaxyClientApi client = GraphQlClientBuilder.newBuilder()
+        GalaxyClientApi client = TypesafeGraphQLClientBuilder.newBuilder()
                 .endpoint(endpoint)
                 .build(GalaxyClientApi.class);
 
