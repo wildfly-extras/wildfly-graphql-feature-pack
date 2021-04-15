@@ -1,6 +1,6 @@
 package org.wildfly.extras.graphql.test.deployment;
 
-import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
+import io.smallrye.graphql.client.typesafe.api.TypesafeGraphQLClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -29,7 +29,7 @@ public class JarInWarTestCase {
 
     @Test
     public void test() {
-        PersonApi personApi = GraphQlClientBuilder.newBuilder().endpoint("http://localhost:8080/jarinwartest/graphql").build(PersonApi.class);
+        PersonApi personApi = TypesafeGraphQLClientBuilder.newBuilder().endpoint("http://localhost:8080/jarinwartest/graphql").build(PersonApi.class);
         Person person = personApi.get();
         Assert.assertEquals("Dave", person.getName());
     }

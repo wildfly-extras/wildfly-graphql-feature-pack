@@ -16,12 +16,12 @@
 
 package org.wildfly.extras.quickstart.microprofile.graphql.test;
 
-import io.smallrye.graphql.client.typesafe.api.GraphQlClientApi;
+import io.smallrye.graphql.client.typesafe.api.GraphQLClientApi;
 import org.wildfly.extras.quickstart.microprofile.graphql.Film;
 
 import java.util.List;
 
-@GraphQlClientApi
+@GraphQLClientApi
 public interface GalaxyClientApi {
 
     List<Film> getAllFilms();
