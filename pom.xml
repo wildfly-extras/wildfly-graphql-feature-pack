@@ -49,7 +49,7 @@
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>1.2.0.Alpha2</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>1.2.0.Beta1</version.io.smallrye.graphql>
         <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
@@ -73,6 +73,7 @@
         <!-- Testing-only dependencies -->
         <version.shrinkwrap>2.2.4</version.shrinkwrap>
         <version.commons-logging>1.1.3</version.commons-logging>
+        <version.tyrus>1.1</version.tyrus>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
@@ -466,6 +467,16 @@
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-core</artifactId>
                 <version>${version.vertx}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.tyrus</groupId>
+                <artifactId>tyrus-client</artifactId>
+                <version>${version.tyrus}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.tyrus</groupId>
+                <artifactId>tyrus-container-grizzly</artifactId>
+                <version>${version.tyrus}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

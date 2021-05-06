@@ -63,5 +63,7 @@
         <module name="io.opentracing.opentracing-api" optional="true"/>
         <module name="org.eclipse.microprofile.metrics.api" optional="true"/>
         <module name="org.slf4j"/>
+
+        <module name="io.undertow.websocket"/>
     </dependencies>
 </module>

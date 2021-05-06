@@ -126,6 +126,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-client</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-container-grizzly</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>io.smallrye</groupId>
             <artifactId>smallrye-graphql-client-api</artifactId>
             <scope>test</scope>
