@@ -37,9 +37,13 @@
         <module name="org.jboss.staxmapper"/>
         <module name="org.jboss.vfs"/>
         <module name="io.undertow.servlet"/>
+        <module name="io.undertow.websocket"/>
         <module name="org.eclipse.microprofile.graphql.api"/>
         <module name="io.smallrye.graphql" export="true"/>
         <module name="org.wildfly.security.manager"/>
         <module name="javax.enterprise.api"/>
+        <module name="javax.websocket.api"/>
+        <module name="org.wildfly.extension.undertow"/>
+        <module name="javax.json.bind.api"/>
     </dependencies>
 </module>

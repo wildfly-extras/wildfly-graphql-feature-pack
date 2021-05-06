@@ -87,6 +87,25 @@
             <groupId>org.wildfly</groupId>
             <artifactId>wildfly-weld</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-undertow</artifactId>
+        </dependency>
+
+        <!-- FIXME - HACK - this is needed to be able to compile SubscriptionWebSocket
+             but that class should go away in the end-->
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-graphql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.json.bind</groupId>
+            <artifactId>jakarta.json.bind-api</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.wildfly.core</groupId>
@@ -99,5 +118,6 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 </project>
