@@ -19,16 +19,30 @@ public class PublisherResource {
     @Subscription
     public Publisher<Integer> counting() {
         return subscriber -> {
-            for (int i = 0; i < 10; i++) {
-                subscriber.onNext(i);
-                try {
-                    TimeUnit.MILLISECONDS.sleep(100);
+            subscriber.onSubscribe(new org.reactivestreams.Subscription() {
+
+                int i = -1;
+
+                @Override
+                public void request(long l) {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    }
+                    catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(i > 9) {
+                        subscriber.onComplete();
+                    } else {
+                        i++;
+                        subscriber.onNext(i);
+                    }
                 }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
+
+                @Override
+                public void cancel() {
                 }
-            }
-            subscriber.onComplete();
+            });
         };
     }
 
