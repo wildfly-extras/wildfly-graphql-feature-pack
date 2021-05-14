@@ -29,7 +29,7 @@ public class MyClientEndpoint {
     public void processMessage(String message) {
         System.out.println("Received message in client: " + message);
         JsonReader parser = Json.createReader(new StringReader(message));
-        int receivedNumber = parser.readObject().getInt("counting");
+        int receivedNumber = parser.readObject().getJsonObject("data").getInt("counting");
         RECEIVED_NUMBERS.add(receivedNumber);
     }
 

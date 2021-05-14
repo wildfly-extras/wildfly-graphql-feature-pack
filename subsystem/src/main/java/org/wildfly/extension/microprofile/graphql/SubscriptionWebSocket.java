@@ -1,7 +1,8 @@
 package org.wildfly.extension.microprofile.graphql;
 
 import graphql.ExecutionResult;
-import graphql.schema.GraphQLSchema;
+import graphql.ExecutionResultImpl;
+import graphql.GraphqlErrorBuilder;
 import io.smallrye.graphql.cdi.config.GraphQLConfig;
 import io.smallrye.graphql.execution.ExecutionResponse;
 import io.smallrye.graphql.execution.ExecutionService;
@@ -15,9 +16,6 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.JsonReaderFactory;
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.json.bind.JsonbConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -27,9 +25,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.concurrent.atomic.AtomicReference;
 
-// FIXME: I had to copy this from smallrye-graphql codebase
-// to work around a problem where undertow does not see the annotations during deployment time
-// I also had to add logic that activates a request context
 @ServerEndpoint("/graphql")
 public class SubscriptionWebSocket {
 
@@ -40,27 +35,31 @@ public class SubscriptionWebSocket {
     ExecutionService executionService;
 
     @Inject
-    GraphQLSchema graphQLSchema;
-
-    @Inject
     GraphQLConfig config;
 
     @Inject
     RequestContextController requestContextController;
 
     @OnClose
-    public void onClose(Session session) throws IOException {
+    public void onClose(Session session) {
+        Subscription subscription = subscriptionRef.get();
+        if(subscription != null) {
+            subscription.cancel();
+        }
         subscriptionRef.set(null);
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) throws IOException {
-        session.getBasicRemote().sendText(throwable.getMessage());
+        throwable.printStackTrace();
+        if(session.isOpen()) {
+            session.close();
+        }
     }
 
     @OnMessage
     public void handleMessage(Session session, String message) {
-        requestContextController.activate(); // !!! I added this
+        requestContextController.activate();
         try {
             try (JsonReader jsonReader = jsonReaderFactory.createReader(new StringReader(message))) {
                 JsonObject jsonInput = jsonReader.readObject();
@@ -80,27 +79,38 @@ public class SubscriptionWebSocket {
 
                         @Override
                         public void onNext(ExecutionResult er) {
-
                             try {
-                                Object response = er.getData();
                                 if (session.isOpen()) {
-                                    session.getBasicRemote().sendText(JSONB.toJson(response));
+                                    ExecutionResponse executionResponse = new ExecutionResponse(er, config);
+                                    session.getBasicRemote().sendText(executionResponse.getExecutionResultAsString());
                                 }
                             }
                             catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
                             request(1, session);
-
                         }
 
                         @Override
                         public void onError(Throwable t) {
                             try {
-                                session.getBasicRemote().sendText(t.getMessage());
+                                // TODO: Below must move to SmallRye, and once 1.2.1 is releaes we can remove it here
+                                //       Once in SmallRye, this will also follow the propper error rule (show/hide) and add more details.
+                                ExecutionResultImpl result = new ExecutionResultImpl(GraphqlErrorBuilder.newError()
+                                        .message(t.getMessage())
+                                        .build());
+                                ExecutionResponse response = new ExecutionResponse(result, config);
+                                session.getBasicRemote().sendText(response.getExecutionResultAsString());
                             }
                             catch (IOException ex) {
-                                throw new RuntimeException(ex);
+                                ex.printStackTrace();
+                            } finally {
+                                try {
+                                    session.close();
+                                }
+                                catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
 
@@ -110,7 +120,7 @@ public class SubscriptionWebSocket {
                                 session.close();
                             }
                             catch (IOException ex) {
-                                throw new RuntimeException(ex);
+                                ex.printStackTrace();
                             }
                         }
                     });
@@ -129,5 +139,4 @@ public class SubscriptionWebSocket {
         }
     }
 
-    private static final Jsonb JSONB = JsonbBuilder.create(new JsonbConfig().withNullValues(true));
 }
