@@ -219,10 +219,5 @@
             <artifactId>antlr4-runtime</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.reactivestreams</groupId>
-            <artifactId>reactive-streams</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 </project>

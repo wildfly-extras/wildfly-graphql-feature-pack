@@ -24,12 +24,12 @@ import java.util.concurrent.TimeUnit;
  */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class PublisherTest {
+public class MultiTest {
 
     @Deployment(testable = false)
     public static WebArchive deployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ROOT.war")
-                .addClasses(PublisherResource.class)
+                .addClasses(MultiResource.class)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         return war;
     }
@@ -42,7 +42,7 @@ public class PublisherTest {
         Session session = container.connectToServer(MyClientEndpoint.class, URI.create(uri));
         session.getBasicRemote().sendText("{\"query\":\"subscription a { counting }\",\"variables\":null,\"operationName\":\"a\"}");
         Assert.assertTrue("Timeout waiting for the websocket to close!",
-                MyClientEndpoint.CLOSED.await(10, TimeUnit.SECONDS));
+                MyClientEndpoint.CLOSED.await(5, TimeUnit.SECONDS));
         for(int i = 0; i < 10; i++) {
             Assert.assertTrue(MyClientEndpoint.RECEIVED_NUMBERS.contains(i));
         }
