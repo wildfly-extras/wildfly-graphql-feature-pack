@@ -1,8 +1,6 @@
 package org.wildfly.extension.microprofile.graphql;
 
 import graphql.ExecutionResult;
-import graphql.ExecutionResultImpl;
-import graphql.GraphqlErrorBuilder;
 import io.smallrye.graphql.cdi.config.GraphQLConfig;
 import io.smallrye.graphql.execution.ExecutionResponse;
 import io.smallrye.graphql.execution.ExecutionService;
@@ -23,13 +21,14 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 @ServerEndpoint("/graphql")
 public class SubscriptionWebSocket {
 
     private static final JsonReaderFactory jsonReaderFactory = Json.createReaderFactory(null);
-    private final AtomicReference<Subscription> subscriptionRef = new AtomicReference<>();
+    private final ConcurrentHashMap<String, AtomicReference<Subscription>> subscriptionRefs = new ConcurrentHashMap<>();
 
     @Inject
     ExecutionService executionService;
@@ -42,16 +41,13 @@ public class SubscriptionWebSocket {
 
     @OnClose
     public void onClose(Session session) {
-        Subscription subscription = subscriptionRef.get();
-        if(subscription != null) {
-            subscription.cancel();
-        }
-        subscriptionRef.set(null);
+        unsubscribe(session.getId());
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) throws IOException {
         throwable.printStackTrace();
+        unsubscribe(session.getId());
         if(session.isOpen()) {
             session.close();
         }
@@ -73,8 +69,18 @@ public class SubscriptionWebSocket {
 
                         @Override
                         public void onSubscribe(Subscription s) {
-                            subscriptionRef.set(s);
-                            request(1, session);
+                            AtomicReference<Subscription> subRef = subscriptionRefs.get(session.getId());
+                            if (subRef == null) {
+                                subRef = new AtomicReference<>(s);
+                                subscriptionRefs.put(session.getId(), subRef);
+                                s.request(1);
+                                return;
+                            }
+                            if (subRef.compareAndSet(null, s)) {
+                                s.request(1);
+                            } else {
+                                s.cancel();
+                            }
                         }
 
                         @Override
@@ -83,39 +89,32 @@ public class SubscriptionWebSocket {
                                 if (session.isOpen()) {
                                     ExecutionResponse executionResponse = new ExecutionResponse(er, config);
                                     session.getBasicRemote().sendText(executionResponse.getExecutionResultAsString());
+                                    Subscription s = subscriptionRefs.get(session.getId()).get();
+                                    s.request(1);
+                                } else {
+                                    unsubscribe(session.getId());
                                 }
                             }
                             catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
-                            request(1, session);
                         }
 
                         @Override
                         public void onError(Throwable t) {
+                            t.printStackTrace();
+                            unsubscribe(session.getId());
                             try {
-                                // TODO: Below must move to SmallRye, and once 1.2.1 is releaes we can remove it here
-                                //       Once in SmallRye, this will also follow the propper error rule (show/hide) and add more details.
-                                ExecutionResultImpl result = new ExecutionResultImpl(GraphqlErrorBuilder.newError()
-                                        .message(t.getMessage())
-                                        .build());
-                                ExecutionResponse response = new ExecutionResponse(result, config);
-                                session.getBasicRemote().sendText(response.getExecutionResultAsString());
+                                session.close();
                             }
-                            catch (IOException ex) {
-                                ex.printStackTrace();
-                            } finally {
-                                try {
-                                    session.close();
-                                }
-                                catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                            catch (IOException e) {
+                                e.printStackTrace();
                             }
                         }
 
                         @Override
                         public void onComplete() {
+                            unsubscribe(session.getId());
                             try {
                                 session.close();
                             }
@@ -132,10 +131,15 @@ public class SubscriptionWebSocket {
 
     }
 
-    private void request(int n, Session session) {
-        Subscription subscription = subscriptionRef.get();
-        if (subscription != null && session.isOpen()) {
-            subscription.request(n);
+
+    private void unsubscribe(String sessionId) {
+        AtomicReference<Subscription> subscription = subscriptionRefs.get(sessionId);
+        subscriptionRefs.remove(sessionId);
+
+        if (subscription != null && subscription.get() != null) {
+            subscription.get().cancel();
+//            Subscriptions.cancel(subscription); // FIXME - use this instead?
+            subscription.set(null);
         }
     }
 

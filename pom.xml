@@ -49,7 +49,7 @@
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>1.2.0</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>1.2.3</version.io.smallrye.graphql>
         <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
@@ -60,7 +60,7 @@
 
         <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
              so they are here mostly just for compilation and testing purposes -->
-        <version.io.smallrye.reactive.mutiny>0.13.0</version.io.smallrye.reactive.mutiny>
+        <version.io.smallrye.reactive.mutiny>0.14.0</version.io.smallrye.reactive.mutiny>
         <version.io.smallrye.config>2.1.0</version.io.smallrye.config>
         <version.org.reactivestreams>1.0.3</version.org.reactivestreams>
         <version.elytron>1.13.1.Final</version.elytron>
