@@ -49,8 +49,8 @@
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>1.2.4</version.io.smallrye.graphql>
-        <version.org.eclipse.microprofile.graphql>1.0.3</version.org.eclipse.microprofile.graphql>
+        <version.io.smallrye.graphql>1.2.5</version.io.smallrye.graphql>
+        <version.org.eclipse.microprofile.graphql>1.1.0</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>16.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>2.2.3</version.com.graphql-java.dataloader>
         <version.org.antlr4>4.8</version.org.antlr4> <!-- wildfly contains antlr v2, so we have to bring in v4 separately -->
