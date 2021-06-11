@@ -19,7 +19,7 @@ import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Test for a simple subscription operation implemented by a org.reactivestreams.Publisher
+ * Test for a simple subscription operation implemented by a Multi
  * and used by a pure websocket client.
  */
 @RunWith(Arquillian.class)
