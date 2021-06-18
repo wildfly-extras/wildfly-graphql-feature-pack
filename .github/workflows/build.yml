@@ -47,11 +47,10 @@ jobs:
         run: mvn -B install
 
   older-wildfly:
-    if: false # right now graphql feature pack 1.2.x is only tested with wf 23
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wildfly: [20.0.1.Final]
+        wildfly: [23.0.2.Final]
     name: build with wildfly ${{matrix.wildfly}}
 
     steps:
