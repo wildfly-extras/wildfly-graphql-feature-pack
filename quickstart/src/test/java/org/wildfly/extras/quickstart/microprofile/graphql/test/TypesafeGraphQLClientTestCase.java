@@ -56,7 +56,9 @@ public class TypesafeGraphQLClientTestCase {
                 .addClasses(Film.class, Hero.class, LightSaber.class, GalaxyClientApi.class)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // depend on the client libraries included in the feature pack as static modules
-                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client.jaxrs services\n"), "MANIFEST.MF");
+                // FIXME: can we avoid requiring the deployment to declare dependency on services&meta-inf here?
+                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client.jaxrs services," +
+                        " io.smallrye.graphql.client.common meta-inf\n"), "MANIFEST.MF");
     }
 
     @Test
