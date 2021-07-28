@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.vertx;
+package org.wildfly.extras.graphql.test.client.vertx.dynamic;
 
 public class Dummy {
 

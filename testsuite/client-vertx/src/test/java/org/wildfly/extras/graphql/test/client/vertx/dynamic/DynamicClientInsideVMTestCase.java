@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.vertx;
+package org.wildfly.extras.graphql.test.client.vertx.dynamic;
 
 import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClientBuilder;
 import io.smallrye.graphql.client.dynamic.vertx.VertxDynamicGraphQLClient;

@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.jaxrs;
+package org.wildfly.extras.graphql.test.client.vertx.typesafe;
 
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
