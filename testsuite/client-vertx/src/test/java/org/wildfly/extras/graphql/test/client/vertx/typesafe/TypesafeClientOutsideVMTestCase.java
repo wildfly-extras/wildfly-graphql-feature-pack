@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.jaxrs;
+package org.wildfly.extras.graphql.test.client.vertx.typesafe;
 
 import io.smallrye.graphql.client.typesafe.api.TypesafeGraphQLClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;

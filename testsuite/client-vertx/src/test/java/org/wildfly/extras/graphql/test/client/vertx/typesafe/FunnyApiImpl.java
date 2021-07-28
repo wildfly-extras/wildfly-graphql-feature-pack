@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.jaxrs;
+package org.wildfly.extras.graphql.test.client.vertx.typesafe;
 
 import java.util.concurrent.ThreadLocalRandom;
 

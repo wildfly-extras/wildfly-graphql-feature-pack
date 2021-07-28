@@ -1,4 +1,4 @@
-package org.wildfly.extras.graphql.test.client.vertx;
+package org.wildfly.extras.graphql.test.client.vertx.dynamic;
 
 import io.smallrye.graphql.client.Response;
 import io.smallrye.graphql.client.core.Document;
