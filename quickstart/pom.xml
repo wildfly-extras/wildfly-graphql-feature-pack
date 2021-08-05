@@ -73,6 +73,19 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+             <groupId>io.smallrye</groupId>
+             <artifactId>smallrye-graphql-api</artifactId>
+             <scope>provided</scope>
+        </dependency>
+        <!-- TODO: smallrye-graphql-api has a "provided" dep on this so it's not brought in transitively,
+            so maybe it should be "compile" in SR? -->
+        <dependency>
+            <groupId>jakarta.json</groupId>
+            <artifactId>jakarta.json-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
             <scope>provided</scope>
