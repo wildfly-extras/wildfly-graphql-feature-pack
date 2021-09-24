@@ -28,5 +28,6 @@
         <module name="org.eclipse.microprofile.config.api"/>
         <module name="io.smallrye.config"/>
         <module name="javax.enterprise.api"/>
+        <module name="javax.json.bind.api"/>
     </dependencies>
 </module>
