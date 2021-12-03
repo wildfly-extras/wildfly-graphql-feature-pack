@@ -6,7 +6,7 @@ import io.smallrye.graphql.client.core.OperationType;
 import io.smallrye.graphql.client.core.ScalarType;
 import io.smallrye.graphql.client.core.Variable;
 import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClientBuilder;
-import io.smallrye.graphql.client.dynamic.vertx.VertxDynamicGraphQLClient;
+import io.smallrye.graphql.client.vertx.dynamic.VertxDynamicGraphQLClient;
 import io.smallrye.mutiny.Multi;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;

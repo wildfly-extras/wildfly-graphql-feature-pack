@@ -1,8 +1,8 @@
 package org.wildfly.extras.graphql.test.client.vertx.dynamic;
 
-import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClientBuilder;
-import io.smallrye.graphql.client.dynamic.vertx.VertxDynamicGraphQLClient;
 import io.smallrye.graphql.client.core.Document;
+import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClientBuilder;
+import io.smallrye.graphql.client.vertx.dynamic.VertxDynamicGraphQLClient;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
