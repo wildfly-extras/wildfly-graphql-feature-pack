@@ -3,7 +3,7 @@ package org.wildfly.extras.graphql.test.client.vertx.dynamic;
 import io.smallrye.graphql.client.GraphQLClient;
 import io.smallrye.graphql.client.core.Document;
 import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClient;
-import io.smallrye.graphql.client.dynamic.vertx.VertxDynamicGraphQLClient;
+import io.smallrye.graphql.client.vertx.dynamic.VertxDynamicGraphQLClient;
 import io.vertx.core.MultiMap;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
