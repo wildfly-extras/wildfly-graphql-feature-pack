@@ -226,12 +226,13 @@
                             <configurations>
                                 <config>
                                     <model>standalone</model>
-                                    <name>standalone.xml</name>
+                                    <name>standalone-graphql.xml</name>
                                     <layers>
+                                        <!-- jaxrs-server and jmx-remoting are needed by Arquillian -->
                                         <layer>jaxrs-server</layer>
                                         <layer>jmx-remoting</layer>
-                                        <layer>observability</layer>
-                                        <!-- Layers from this FP -->
+
+                                        <layer>microprofile-platform</layer>
                                         <layer>microprofile-graphql</layer>
                                     </layers>
                                 </config>
@@ -275,6 +276,7 @@
                     <systemPropertyVariables combine.children="append">
                         <jboss.install.dir>${jboss.dist}</jboss.install.dir>
                         <server.jvm.args>${server.jvm.args}</server.jvm.args>
+                        <version.org.wildfly>${version.org.wildfly}</version.org.wildfly>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
