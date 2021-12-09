@@ -23,7 +23,7 @@
         <configuration>
             <property name="jbossHome">${jboss.install.dir}</property>
             <property name="javaVmArguments">${server.jvm.args}</property>
-            <property name="serverConfig">${jboss.server.config.file.name:standalone.xml}</property>
+            <property name="serverConfig">${jboss.server.config.file.name:standalone-graphql.xml}</property>
             <property name="jbossArguments">${jboss.args}</property>
             <property name="allowConnectingToRunningServer">true</property>
             <property name="managementAddress">${node0:127.0.0.1}</property>
@@ -32,4 +32,9 @@
             <property name="waitForPortsTimeoutInSeconds">8</property>
         </configuration>
     </container>
+
+    <engine>
+        <property name="deploymentExportPath">target/exports</property>
+    </engine>
+
 </arquillian>
