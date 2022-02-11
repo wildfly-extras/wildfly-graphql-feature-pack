@@ -1,12 +1,19 @@
 package org.wildfly.extras.graphql.test.client.vertx.typesafe;
 
-import org.eclipse.microprofile.graphql.GraphQLApi;
+import io.smallrye.graphql.api.Subscription;
+import io.smallrye.graphql.client.typesafe.api.GraphQLClientApi;
+import io.smallrye.mutiny.Multi;
 import org.eclipse.microprofile.graphql.Query;
 
-@GraphQLApi
-public interface FunnyApi {
+import java.io.Closeable;
+
+@GraphQLClientApi
+public interface FunnyApi extends Closeable {
 
     @Query("random")
     Funny getRandomFunny();
+
+    @Subscription("count")
+    Multi<Integer> count(int fromInclusive, int toExclusive);
 
 }
