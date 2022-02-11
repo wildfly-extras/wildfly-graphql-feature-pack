@@ -65,5 +65,6 @@
         <module name="org.slf4j"/>
 
         <module name="io.undertow.websocket"/>
+        <module name="javax.websocket.api"/>
     </dependencies>
 </module>

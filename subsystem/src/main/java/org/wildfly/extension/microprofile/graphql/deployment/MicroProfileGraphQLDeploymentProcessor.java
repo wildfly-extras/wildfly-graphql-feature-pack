@@ -34,7 +34,7 @@ import org.jboss.metadata.web.jboss.JBossServletsMetaData;
 import org.jboss.metadata.web.jboss.JBossWebMetaData;
 import org.jboss.metadata.web.spec.ListenerMetaData;
 import org.jboss.metadata.web.spec.ServletMappingMetaData;
-import org.wildfly.extension.microprofile.graphql.SubscriptionWebSocket;
+import org.wildfly.extension.microprofile.graphql.WildFlyGraphQLServerWebSocket;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
 import org.wildfly.extension.undertow.deployment.UndertowAttachments;
 
@@ -70,7 +70,7 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
         // if the GraphQL API contains subscriptions, deploy the relevant web socket endpoint that handles them
         if (!compositeIndex.getAnnotations(ANNOTATION_SUBSCRIPTION).isEmpty()) {
             WebSocketDeploymentInfo webSocketDeploymentInfo = deploymentUnit.getAttachment(UndertowAttachments.WEB_SOCKET_DEPLOYMENT_INFO);
-            webSocketDeploymentInfo.addEndpoint(SubscriptionWebSocket.class);
+            webSocketDeploymentInfo.addEndpoint(WildFlyGraphQLServerWebSocket.class);
             mergedJBossWebMetaData.setEnableWebSockets(true);
         }
 

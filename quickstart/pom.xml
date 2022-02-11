@@ -77,6 +77,16 @@
              <artifactId>smallrye-graphql-api</artifactId>
              <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.smallrye.reactive</groupId>
+            <artifactId>mutiny</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <!-- TODO: smallrye-graphql-api has a "provided" dep on this so it's not brought in transitively,
             so maybe it should be "compile" in SR? -->
         <dependency>

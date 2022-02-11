@@ -1,5 +1,7 @@
 package org.wildfly.extras.quickstart.microprofile.graphql;
 
+import io.smallrye.graphql.api.Subscription;
+import io.smallrye.mutiny.Multi;
 import org.eclipse.microprofile.graphql.DefaultValue;
 import org.eclipse.microprofile.graphql.Description;
 import org.eclipse.microprofile.graphql.GraphQLApi;
@@ -53,6 +55,11 @@ public class FilmResource {
     @Name("desc")
     public List<String> desc(@Source List<Film> films) {
         return films.stream().map(film -> "Awesome").collect(Collectors.toList());
+    }
+
+    @Subscription
+    public Multi<String> hello() {
+        return Multi.createFrom().items("1", "2", "3");
     }
 
 }
