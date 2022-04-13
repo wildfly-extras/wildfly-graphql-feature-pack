@@ -29,5 +29,6 @@
         <module name="io.smallrye.config"/>
         <module name="javax.enterprise.api"/>
         <module name="javax.json.bind.api"/>
+	<module name="org.jboss.logging"/>
     </dependencies>
 </module>
