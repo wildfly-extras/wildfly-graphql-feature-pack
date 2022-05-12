@@ -12,12 +12,15 @@
     <!-- below here we specify the desired GraphQL feature pack version
          see https://github.com/wildfly-extras/wildfly-graphql-feature-pack/wiki/Supported-versions-and-future-versions-roadmap for the list of supported FP versions depending on the used WildFly version
 	 -->
-    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.7.0.Final">
+    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.7.0.Final-SNAPSHOT">
         <default-configs inherit="false"/>
     </feature-pack>
     <config model="standalone" name="standalone-graphql.xml">
         <layers>
             <include name="microprofile-graphql"/>
+            <include name="jaxrs-server"/>
+            <include name="observability"/>
+            <include name="jmx-remoting"/>
         </layers>
     </config>
     <options>
