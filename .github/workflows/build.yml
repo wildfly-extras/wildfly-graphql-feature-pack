@@ -44,7 +44,9 @@ jobs:
           java-version: ${{matrix.java}}
 
       - name: build with maven
-        run: mvn -B install
+        run: |
+          export MAVEN_OPTS="--add-exports=java.xml/com.sun.org.apache.xerces.internal.parsers=ALL-UNNAMED --add-exports=java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED" # needed for JDK 16+ only
+          mvn -B install
 
   older-wildfly:
     runs-on: ubuntu-latest
