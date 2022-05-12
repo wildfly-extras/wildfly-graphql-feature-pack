@@ -11,6 +11,7 @@ import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.graphql.Source;
 
 import javax.inject.Inject;
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,8 +59,11 @@ public class FilmResource {
     }
 
     @Subscription
-    public Multi<String> hello() {
-        return Multi.createFrom().items("1", "2", "3");
+    public Multi<Long> numbers() {
+        return Multi.createFrom().ticks().every(Duration.ofSeconds(1))
+            .onItem().invoke(number -> {
+                System.out.println("Generating number: " + number);
+            });
     }
 
 }
