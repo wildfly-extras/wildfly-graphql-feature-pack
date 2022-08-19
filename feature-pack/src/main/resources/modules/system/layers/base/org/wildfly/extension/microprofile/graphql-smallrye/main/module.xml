@@ -41,9 +41,9 @@
         <module name="org.eclipse.microprofile.graphql.api"/>
         <module name="io.smallrye.graphql" export="true"/>
         <module name="org.wildfly.security.manager"/>
-        <module name="javax.enterprise.api"/>
-        <module name="javax.websocket.api"/>
+        <module name="jakarta.enterprise.api"/>
+        <module name="jakarta.websocket.api"/>
         <module name="org.wildfly.extension.undertow"/>
-        <module name="javax.json.bind.api"/>
+        <module name="jakarta.json.bind.api"/>
     </dependencies>
 </module>

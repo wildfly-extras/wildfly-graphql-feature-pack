@@ -16,13 +16,15 @@
 
 package org.wildfly.extras.graphql.test.multipledeployments.nonoverlapping.dep2;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @GraphQLApi
+@ApplicationScoped
 public class Api {
 
     @Inject

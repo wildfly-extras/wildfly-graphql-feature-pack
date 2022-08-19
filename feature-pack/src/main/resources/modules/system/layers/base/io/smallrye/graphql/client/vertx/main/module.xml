@@ -20,6 +20,7 @@
         <artifact name="${io.smallrye:smallrye-graphql-client-implementation-vertx}"/>
         <artifact name="${io.vertx:vertx-web-client}"/>
         <artifact name="${io.vertx:vertx-web-common}"/>
+        <artifact name="${io.vertx:vertx-uri-template}"/>
     </resources>
 
     <dependencies>
@@ -28,7 +29,7 @@
         <module name="org.slf4j"/>
         <module name="org.eclipse.microprofile.config.api"/>
         <module name="io.smallrye.config"/>
-        <module name="javax.enterprise.api"/>
+        <module name="jakarta.enterprise.api"/>
         <module name="io.vertx.core"/>
         <module name="org.jboss.logging"/>
     </dependencies>

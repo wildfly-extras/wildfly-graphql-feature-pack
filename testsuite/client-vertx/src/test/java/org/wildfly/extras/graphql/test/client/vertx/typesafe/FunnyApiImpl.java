@@ -2,12 +2,14 @@ package org.wildfly.extras.graphql.test.client.vertx.typesafe;
 
 import io.smallrye.graphql.api.Subscription;
 import io.smallrye.mutiny.Multi;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 @GraphQLApi
+@ApplicationScoped
 public class FunnyApiImpl {
 
     @Query("random")

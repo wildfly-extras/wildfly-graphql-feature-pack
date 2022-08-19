@@ -46,6 +46,7 @@ public class TypesafeGraphQLClientTestCase {
     public static WebArchive serverDeployment() {
         return ShrinkWrap.create(WebArchive.class, "server.war")
                 .addPackage(Film.class.getPackage())
+               .addAsManifestResource(new StringAsset("smallrye.graphql.printDataFetcherException=true\n"), "microprofile-config.properties")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 

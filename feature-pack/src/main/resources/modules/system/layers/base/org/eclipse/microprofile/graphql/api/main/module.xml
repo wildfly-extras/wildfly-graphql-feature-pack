@@ -20,7 +20,7 @@
     </resources>
 
     <dependencies>
-        <module name="javax.enterprise.api" />
+        <module name="jakarta.enterprise.api" />
 
         <!-- Needed to avoid warnings in logs -->
         <module name="org.jboss.weld.api" />
