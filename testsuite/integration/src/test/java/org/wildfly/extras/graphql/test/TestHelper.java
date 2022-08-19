@@ -16,8 +16,8 @@
 
 package org.wildfly.extras.graphql.test;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
 public class TestHelper {
 

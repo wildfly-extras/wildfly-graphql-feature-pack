@@ -17,6 +17,7 @@
 package org.wildfly.extras.graphql.test.metrics;
 
 import io.restassured.RestAssured;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.eclipse.microprofile.metrics.MetricID;
@@ -37,7 +38,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.extras.graphql.test.TestHelper;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.equalTo;
@@ -50,7 +51,8 @@ public class MetricsTestCase {
     public static WebArchive deployment1() {
         return ShrinkWrap.create(WebArchive.class, "metrics.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-                .addAsManifestResource(new StringAsset("smallrye.graphql.metrics.enabled=true"),
+                .addAsManifestResource(new StringAsset("smallrye.graphql.metrics.enabled=true\n" +
+                        "smallrye.graphql.printDataFetcherException=true"),
                         "microprofile-config.properties")
                 .addClass(DummyApi.class);
     }
@@ -87,6 +89,7 @@ public class MetricsTestCase {
     }
 
     @GraphQLApi
+    @ApplicationScoped
     public static class DummyApi {
 
         @Query

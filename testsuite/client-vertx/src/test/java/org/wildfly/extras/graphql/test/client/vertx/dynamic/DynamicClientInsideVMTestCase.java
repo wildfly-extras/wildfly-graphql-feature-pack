@@ -13,7 +13,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 import java.util.concurrent.ExecutionException;
 
 import static io.smallrye.graphql.client.core.Document.document;

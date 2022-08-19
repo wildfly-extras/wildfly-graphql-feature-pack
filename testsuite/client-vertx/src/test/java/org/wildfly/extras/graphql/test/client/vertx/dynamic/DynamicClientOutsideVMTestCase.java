@@ -20,7 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;

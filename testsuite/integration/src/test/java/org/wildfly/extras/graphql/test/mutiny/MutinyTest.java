@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.smallrye.graphql.api.Context;
 import io.smallrye.mutiny.Uni;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -80,6 +81,7 @@ public class MutinyTest {
     }
 
     @GraphQLApi
+    @ApplicationScoped
     public static class MutinyResource {
 
         // list of already seen execution ids - we use this to verify that each query gets its correct Context

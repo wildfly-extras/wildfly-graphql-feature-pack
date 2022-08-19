@@ -17,6 +17,7 @@
 package org.wildfly.extras.graphql.test.source;
 
 import io.restassured.RestAssured;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.DefaultValue;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;
@@ -91,6 +92,7 @@ public class ParametrizedBatchSourceTestCase {
     }
 
     @GraphQLApi
+    @ApplicationScoped
     public static class ApiWithBatchSource {
 
         @Query("allPersons")
