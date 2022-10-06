@@ -49,6 +49,7 @@ jobs:
           mvn -B install
 
   older-wildfly:
+    if: false # Currently only WF 27 is supported by this feature pack branch
     runs-on: ubuntu-latest
     strategy:
       matrix:
