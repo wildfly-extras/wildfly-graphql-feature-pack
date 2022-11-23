@@ -28,7 +28,6 @@
         <artifact name="${io.smallrye:smallrye-graphql-schema-builder}"/>
         <artifact name="${com.graphql-java:graphql-java}"/>
         <artifact name="${com.graphql-java:java-dataloader}"/>
-        <artifact name="${org.antlr:antlr4-runtime}"/>
         <artifact name="${com.apollographql.federation:federation-graphql-java-support}"/>
     </resources>
 
