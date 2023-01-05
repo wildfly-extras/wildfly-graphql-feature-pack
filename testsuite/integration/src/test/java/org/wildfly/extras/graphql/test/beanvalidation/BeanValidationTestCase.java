@@ -17,6 +17,7 @@
 package org.wildfly.extras.graphql.test.beanvalidation;
 
 import io.restassured.RestAssured;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Query;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -30,8 +31,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.extras.graphql.test.TestHelper;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Size;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -98,6 +99,7 @@ public class BeanValidationTestCase {
     }
 
     @GraphQLApi
+    @ApplicationScoped
     public static class ApiWithBeanValidation {
 
         @Query("sayHello")

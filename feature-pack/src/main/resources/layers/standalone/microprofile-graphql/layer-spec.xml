@@ -28,7 +28,8 @@
         <package name="org.wildfly.extension.microprofile.graphql-smallrye"/>
         <package name="io.smallrye.graphql"/>
         <package name="io.smallrye.graphql.api"/>
-        <package name="io.smallrye.graphql.client"/>
+        <package name="io.smallrye.graphql.client.common"/>
+        <package name="io.smallrye.graphql.client.vertx"/>
         <package name="io.smallrye.graphql.client.api"/>
     </packages>
 </layer-spec>

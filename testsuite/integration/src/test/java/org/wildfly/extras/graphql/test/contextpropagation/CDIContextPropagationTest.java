@@ -17,7 +17,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.wildfly.extras.graphql.test.TestHelper;
 
-import javax.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.RequestScoped;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;

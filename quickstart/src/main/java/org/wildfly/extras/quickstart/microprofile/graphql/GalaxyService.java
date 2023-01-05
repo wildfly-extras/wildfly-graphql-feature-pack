@@ -1,6 +1,6 @@
 package org.wildfly.extras.quickstart.microprofile.graphql;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;

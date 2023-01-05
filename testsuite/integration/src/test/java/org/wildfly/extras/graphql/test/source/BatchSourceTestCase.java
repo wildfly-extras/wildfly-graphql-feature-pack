@@ -17,6 +17,7 @@
 package org.wildfly.extras.graphql.test.source;
 
 import io.restassured.RestAssured;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Name;
 import org.eclipse.microprofile.graphql.Query;
@@ -26,6 +27,7 @@ import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,6 +48,7 @@ public class BatchSourceTestCase {
     @Deployment
     public static WebArchive deployment1() {
         return ShrinkWrap.create(WebArchive.class, "batch.war")
+                .addAsManifestResource(new StringAsset("smallrye.graphql.printDataFetcherException=true\n"), "microprofile-config.properties")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -68,7 +71,7 @@ public class BatchSourceTestCase {
 
 
 
-    static class Person {
+    public static class Person {
 
         private String name;
 
@@ -90,6 +93,7 @@ public class BatchSourceTestCase {
     }
 
     @GraphQLApi
+    @ApplicationScoped
     public static class ApiWithBatchSource {
 
         @Query("allPersons")

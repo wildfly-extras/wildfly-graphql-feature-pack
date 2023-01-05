@@ -16,8 +16,9 @@
 
 package org.wildfly.extension.microprofile.graphql.deployment;
 
-import io.smallrye.graphql.servlet.ExecutionServlet;
-import io.smallrye.graphql.servlet.SchemaServlet;
+import io.smallrye.graphql.entry.http.ExecutionServlet;
+import io.smallrye.graphql.entry.http.SchemaServlet;
+import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import org.jboss.as.ee.structure.DeploymentType;
 import org.jboss.as.ee.structure.DeploymentTypeMarker;
 import org.jboss.as.server.deployment.Attachments;
@@ -33,7 +34,9 @@ import org.jboss.metadata.web.jboss.JBossServletsMetaData;
 import org.jboss.metadata.web.jboss.JBossWebMetaData;
 import org.jboss.metadata.web.spec.ListenerMetaData;
 import org.jboss.metadata.web.spec.ServletMappingMetaData;
+import org.wildfly.extension.microprofile.graphql.WildFlyGraphQLServerWebSocket;
 import org.wildfly.extension.microprofile.graphql._private.MicroProfileGraphQLLogger;
+import org.wildfly.extension.undertow.deployment.UndertowAttachments;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +45,7 @@ import java.util.List;
 public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitProcessor {
 
     static final DotName ANNOTATION_GRAPHQL_API = DotName.createSimple("org.eclipse.microprofile.graphql.GraphQLApi");
+    static final DotName ANNOTATION_SUBSCRIPTION = DotName.createSimple("io.smallrye.graphql.api.Subscription");
 
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
@@ -62,6 +66,14 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
         registerStartupListener(mergedJBossWebMetaData);
         registerExecutionServlet(mergedJBossWebMetaData);
         registerSchemaServlet(mergedJBossWebMetaData);
+
+        // if the GraphQL API contains subscriptions, deploy the relevant web socket endpoint that handles them
+        if (!compositeIndex.getAnnotations(ANNOTATION_SUBSCRIPTION).isEmpty()) {
+            WebSocketDeploymentInfo webSocketDeploymentInfo = deploymentUnit.getAttachment(UndertowAttachments.WEB_SOCKET_DEPLOYMENT_INFO);
+            webSocketDeploymentInfo.addEndpoint(WildFlyGraphQLServerWebSocket.class);
+            mergedJBossWebMetaData.setEnableWebSockets(true);
+        }
+
     }
 
 
@@ -69,7 +81,7 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
     // the application
     private void registerStartupListener(JBossWebMetaData webdata) {
         ListenerMetaData startupListenerMetadata = new ListenerMetaData();
-        startupListenerMetadata.setListenerClass("io.smallrye.graphql.servlet.StartupListener");
+        startupListenerMetadata.setListenerClass("io.smallrye.graphql.entry.http.StartupListener");
         List<ListenerMetaData> containerListeners = webdata.getListeners();
         if (containerListeners == null) {
             List<ListenerMetaData> list = new ArrayList<>();

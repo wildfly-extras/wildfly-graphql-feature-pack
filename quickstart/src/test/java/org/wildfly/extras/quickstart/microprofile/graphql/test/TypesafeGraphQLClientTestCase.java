@@ -16,10 +16,11 @@
 
 package org.wildfly.extras.quickstart.microprofile.graphql.test;
 
-import io.smallrye.graphql.client.typesafe.api.GraphQlClientBuilder;
+import io.smallrye.graphql.client.typesafe.api.TypesafeGraphQLClientBuilder;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
@@ -30,17 +31,22 @@ import org.wildfly.extras.quickstart.microprofile.graphql.Film;
 import org.wildfly.extras.quickstart.microprofile.graphql.Hero;
 import org.wildfly.extras.quickstart.microprofile.graphql.LightSaber;
 
+import java.net.URL;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-public class GraphQLClientTestCase {
+public class TypesafeGraphQLClientTestCase {
+
+    @ArquillianResource
+    URL url;
 
     @Deployment(name = "server", testable = false)
     public static WebArchive serverDeployment() {
         return ShrinkWrap.create(WebArchive.class, "server.war")
                 .addPackage(Film.class.getPackage())
+               .addAsManifestResource(new StringAsset("smallrye.graphql.printDataFetcherException=true\n"), "microprofile-config.properties")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -51,14 +57,17 @@ public class GraphQLClientTestCase {
                 .addClasses(Film.class, Hero.class, LightSaber.class, GalaxyClientApi.class)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // depend on the client libraries included in the feature pack as static modules
-                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client services\n"), "MANIFEST.MF");
+                .addAsManifestResource(new StringAsset("Dependencies: io.smallrye.graphql.client.vertx services\n"), "MANIFEST.MF");
     }
 
     @Test
     @OperateOnDeployment("client")
     public void testGetAllFilms() {
-        GalaxyClientApi client = GraphQlClientBuilder.newBuilder()
-                .endpoint("http://localhost:8080/server/graphql")
+        // ArquillianResource injects the URL of the deployment where we are running the test, so replace 'client' with 'server'
+        // to get the context root of the 'server' deployment (which contains the GraphQL endpoint)
+        String endpoint = url.toString().replace("client", "server") + "graphql";
+        GalaxyClientApi client = TypesafeGraphQLClientBuilder.newBuilder()
+                .endpoint(endpoint)
                 .build(GalaxyClientApi.class);
 
         List<Film> allFilms = client.getAllFilms();

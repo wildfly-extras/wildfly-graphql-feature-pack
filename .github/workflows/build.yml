@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: [8, 11]
+        java: [11, 14, 17]
     name: build with jdk ${{matrix.java}}
 
     steps:
@@ -44,14 +44,16 @@ jobs:
           java-version: ${{matrix.java}}
 
       - name: build with maven
-        run: mvn -B install
+        run: |
+          export MAVEN_OPTS="--add-exports=java.xml/com.sun.org.apache.xerces.internal.parsers=ALL-UNNAMED --add-exports=java.xml/com.sun.org.apache.xerces.internal.util=ALL-UNNAMED" # needed for JDK 16+ only
+          mvn -B install
 
   older-wildfly:
-    if: false # right now graphql feature pack 1.2.x is only tested with wf 23
+    if: false # Currently only WF 27 is supported by this feature pack branch
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wildfly: [20.0.1.Final]
+        wildfly: [23.0.2.Final, 24.0.0.Final, 25.0.1.Final]
     name: build with wildfly ${{matrix.wildfly}}
 
     steps:

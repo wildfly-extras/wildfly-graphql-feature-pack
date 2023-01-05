@@ -1,9 +1,12 @@
 package org.wildfly.extras.graphql.test.async;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ThreadLocalRandom;
 
+@ApplicationScoped
 public class FunnyApiImpl implements FunnyApi {
 
     @Override

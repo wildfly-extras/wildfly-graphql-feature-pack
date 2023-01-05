@@ -21,7 +21,7 @@
     <parent>
         <artifactId>wildfly-microprofile-graphql-parent</artifactId>
         <groupId>org.wildfly.extras.graphql</groupId>
-        <version>1.2.1.Final-SNAPSHOT</version>
+        <version>2.0.1.Final-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -105,24 +105,24 @@
             <version>${version.org.wildfly}</version>
             <type>zip</type>
         </dependency>
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-servlet-galleon-pack</artifactId>
-            <version>${version.org.wildfly}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly.core</groupId>
-            <artifactId>wildfly-core-galleon-pack</artifactId>
-            <version>${version.org.wildfly.core}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>org.wildfly</groupId>
-            <artifactId>wildfly-ee-galleon-pack</artifactId>
-            <version>${version.org.wildfly}</version>
-            <type>zip</type>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.wildfly</groupId>-->
+<!--            <artifactId>wildfly-servlet-galleon-pack</artifactId>-->
+<!--            <version>${version.org.wildfly}</version>-->
+<!--            <type>zip</type>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.wildfly.core</groupId>-->
+<!--            <artifactId>wildfly-core-galleon-pack</artifactId>-->
+<!--            <version>${version.org.wildfly.core}</version>-->
+<!--            <type>zip</type>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.wildfly</groupId>-->
+<!--            <artifactId>wildfly-ee-galleon-pack</artifactId>-->
+<!--            <version>${version.org.wildfly}</version>-->
+<!--            <type>zip</type>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.wildfly.extras.reactive</groupId>
             <artifactId>wildfly-microprofile-reactive-feature-pack</artifactId>
@@ -178,6 +178,31 @@
             <artifactId>smallrye-graphql-client-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.smallrye</groupId>
+            <artifactId>smallrye-graphql-client-implementation-vertx</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-uri-template</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.apollographql.federation</groupId>
+            <artifactId>federation-graphql-java-support</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.eclipse.microprofile.graphql</groupId>
@@ -192,16 +217,6 @@
         <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>java-dataloader</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>antlr4-runtime</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.reactivestreams</groupId>
-            <artifactId>reactive-streams</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

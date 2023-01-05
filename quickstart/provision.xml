@@ -22,14 +22,14 @@
     (note that `-dir` should have double hyphens, which don't work in XML comments!)
 -->
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
-    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#23.0.0.Final">
+    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#27.0.0.Final">
         <default-configs inherit="false"/>
         <packages inherit="false">
             <!-- If docs/licenses is desired, uncomment this line -->
             <include name="docs.licenses"/>
         </packages>
     </feature-pack>
-    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:1.2.0.Final">
+    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:2.0.0.Final">
         <default-configs inherit="false"/>
         <packages inherit="false">
             <!-- If docs/licenses is desired, uncomment this line -->
