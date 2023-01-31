@@ -46,6 +46,11 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
 
     static final DotName ANNOTATION_GRAPHQL_API = DotName.createSimple("org.eclipse.microprofile.graphql.GraphQLApi");
     static final DotName ANNOTATION_SUBSCRIPTION = DotName.createSimple("io.smallrye.graphql.api.Subscription");
+    static final DotName ANNOTATION_FEDERATION_EXTENDS = DotName.createSimple("io.smallrye.graphql.api.federation.Extends");
+    static final DotName ANNOTATION_FEDERATION_EXTERNAL = DotName.createSimple("io.smallrye.graphql.api.federation.External");
+    static final DotName ANNOTATION_FEDERATION_KEY = DotName.createSimple("io.smallrye.graphql.api.federation.Key");
+    static final DotName ANNOTATION_FEDERATION_PROVIDES = DotName.createSimple("io.smallrye.graphql.api.federation.Provides");
+    static final DotName ANNOTATION_FEDERATION_REQUIRES = DotName.createSimple("io.smallrye.graphql.api.federation.Requires");
 
     @Override
     public void deploy(DeploymentPhaseContext phaseContext) throws DeploymentUnitProcessingException {
@@ -61,6 +66,12 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
         }
         MicroProfileGraphQLLogger.LOGGER.activatingGraphQLForDeployment(deploymentUnit.getName());
 
+        // Scan for GraphQL Federation annotations. If found, automatically activate federation.
+        if(hasFederationAnnotations(compositeIndex)) {
+            System.setProperty("smallrye.graphql.federation.enabled", "true");
+        }
+
+
         // steps needed for application initialization
         JBossWebMetaData mergedJBossWebMetaData = deploymentUnit.getAttachment(WarMetaData.ATTACHMENT_KEY).getMergedJBossWebMetaData();
         registerStartupListener(mergedJBossWebMetaData);
@@ -74,6 +85,14 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
             mergedJBossWebMetaData.setEnableWebSockets(true);
         }
 
+    }
+
+    private boolean hasFederationAnnotations(CompositeIndex index) {
+        return !index.getAnnotations(ANNOTATION_FEDERATION_EXTENDS).isEmpty() ||
+            !index.getAnnotations(ANNOTATION_FEDERATION_EXTERNAL).isEmpty() ||
+            !index.getAnnotations(ANNOTATION_FEDERATION_KEY).isEmpty() ||
+            !index.getAnnotations(ANNOTATION_FEDERATION_PROVIDES).isEmpty() ||
+            !index.getAnnotations(ANNOTATION_FEDERATION_REQUIRES).isEmpty();
     }
 
 

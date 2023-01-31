@@ -57,7 +57,7 @@ public class FederationTestCase {
             .log().body()
             .assertThat()
             .body(Matchers.containsString("type _Service"))
-            .body(Matchers.containsString("type Product @extends @key(fields : [\"id\"])"));
+            .body(Matchers.containsString("type Product @extends @key(fields : \"id\")"));
     }
 
     @Extends
