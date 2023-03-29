@@ -72,7 +72,7 @@
 
         <!-- Testing-only dependencies -->
         <version.shrinkwrap>2.2.4</version.shrinkwrap>
-        <version.commons-logging>1.1.3</version.commons-logging>
+        <version.commons-logging>99.0-does-not-exist</version.commons-logging>
         <version.tyrus>1.1</version.tyrus>
 
         <!-- Plugin versions and their dependency versions -->
