@@ -56,7 +56,7 @@
         <!-- WF contains vert.x, but we need to add the vertx-web-client artifact. This version should be the same
             as the vert.x version in WildFly -->
         <version.vertx>4.3.3</version.vertx>
-        <version.graphql-java-federation>2.0.8</version.graphql-java-federation>
+        <version.graphql-java-federation>3.0.0</version.graphql-java-federation>
 
         <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
              so they are here mostly just for compilation and testing purposes -->
