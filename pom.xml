@@ -39,7 +39,7 @@
 
     <properties>
 	    <!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
-        <version.org.wildfly>27.0.1.Final</version.org.wildfly>
+        <version.org.wildfly>28.0.0.Final</version.org.wildfly>
         <version.org.wildfly.core>20.0.1.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.6.0.Final</version.org.wildfly.common>
         <version.org.jboss.galleon>5.1.0.Final</version.org.jboss.galleon>
