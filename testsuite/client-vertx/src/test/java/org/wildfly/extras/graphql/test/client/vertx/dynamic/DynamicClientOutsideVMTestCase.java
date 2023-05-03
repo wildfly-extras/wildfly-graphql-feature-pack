@@ -8,6 +8,7 @@ import io.smallrye.graphql.client.core.Variable;
 import io.smallrye.graphql.client.dynamic.api.DynamicGraphQLClientBuilder;
 import io.smallrye.graphql.client.vertx.dynamic.VertxDynamicGraphQLClient;
 import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.helpers.test.AssertSubscriber;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,7 +27,6 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 import static io.smallrye.graphql.client.core.Argument.arg;
 import static io.smallrye.graphql.client.core.Argument.args;
@@ -152,8 +152,12 @@ public class DynamicClientOutsideVMTestCase {
                         OperationType.SUBSCRIPTION,
                         field("dummies",
                                 field("integer"))));
-        Multi<Response> multi = client.subscription(document);
-        List<Response> responses = multi.subscribe().asStream().collect(Collectors.toList());
+        Multi<Response> multi = client.subscription(document).onItem().invoke(r -> System.out.println("Received " + r));
+        AssertSubscriber<Response> subscriber = new AssertSubscriber<>(20);
+        multi.subscribe(subscriber);
+        subscriber.awaitCompletion(Duration.ofSeconds(10));
+        subscriber.assertCompleted();
+        List<Response> responses = subscriber.getItems();
         for(int i = 10; i < 20; i++) {
             assertEquals(i, responses.get(i-10)
                     .getData()
