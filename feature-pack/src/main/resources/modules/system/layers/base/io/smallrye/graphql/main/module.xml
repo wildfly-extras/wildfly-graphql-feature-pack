@@ -42,6 +42,7 @@
         <module name="io.smallrye.context-propagation"/>
         <module name="org.eclipse.microprofile.context-propagation.api"/>
         <module name="io.smallrye.reactive.mutiny" export="true"/>
+        <module name="io.smallrye.reactive.mutiny.zero-flow-adapters" export="true"/>
         <module name="org.reactivestreams" export="true"/>
 
         <module name="org.jboss.weld.api"/>

@@ -32,4 +32,9 @@
             <property name="waitForPortsTimeoutInSeconds">8</property>
         </configuration>
     </container>
+
+    <engine>
+        <property name="deploymentExportPath">target/exports</property>
+    </engine>
+
 </arquillian>

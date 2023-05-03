@@ -47,7 +47,7 @@ public class TypesafeClientOutsideVMTestCase {
             .build(FunnyApi.class)) {
             AssertSubscriber<Integer> subscriber = new AssertSubscriber<>(5);
             funnyApi.count(0, 5).subscribe(subscriber);
-            subscriber.await(Duration.ofSeconds(10));
+            subscriber.awaitCompletion(Duration.ofSeconds(10));
             subscriber.assertCompleted();
             subscriber.assertItems(0, 1, 2, 3, 4);
         }
@@ -61,7 +61,7 @@ public class TypesafeClientOutsideVMTestCase {
             .build(FunnyApi.class)) {
             AssertSubscriber<Integer> subscriber = new AssertSubscriber<>(5);
             funnyApi.count(0, 5).subscribe(subscriber);
-            subscriber.await(Duration.ofSeconds(10));
+            subscriber.awaitCompletion(Duration.ofSeconds(10));
             subscriber.assertCompleted();
             subscriber.assertItems(0, 1, 2, 3, 4);
         }

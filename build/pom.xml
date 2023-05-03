@@ -98,6 +98,7 @@
                                     <layers>
                                         <layer>cloud-profile</layer>
                                         <layer>core-tools</layer>
+                                        <layer>logging</layer>
                                         <!-- Layers from this FP -->
                                         <layer>microprofile-graphql</layer>
                                     </layers>
