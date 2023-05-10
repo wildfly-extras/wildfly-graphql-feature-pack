@@ -79,7 +79,7 @@
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
-        <version.org.wildfly.galleon-plugins>6.4.0.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly.galleon-plugins>6.4.2.Final</version.org.wildfly.galleon-plugins>
         <version.wildfly.maven.plugin>2.2.0.Final</version.wildfly.maven.plugin>
 
         <!-- Misc. -->
