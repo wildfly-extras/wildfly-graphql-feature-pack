@@ -41,3 +41,5 @@ target
 # gradle
 .gradle
 **/gradle/wrapper
+
+/quickstart/wildfly/

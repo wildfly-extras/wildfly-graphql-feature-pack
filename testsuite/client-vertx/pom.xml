@@ -37,7 +37,7 @@
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.eclipse</groupId>
@@ -134,10 +134,6 @@
             <groupId>org.glassfish</groupId>
             <artifactId>jakarta.json</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.json</groupId>
-            <artifactId>jakarta.json-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.wildfly.arquillian</groupId>
