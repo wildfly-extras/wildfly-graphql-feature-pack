@@ -2,26 +2,16 @@
 
 ## Prerequisites
 - JDK 1.8+
-- Maven 
-- Galleon downloaded and available on your path as described in the [main README](../README.md). The main README also provides background on how to provision WildFly servers and which Galleon layers are available.
+- Maven
 
 
 ## Building and deploying the quickstart
-You need to provision a server (remember you need to have Galleon installed as described in 
-the [main README](../README.md)). Go to the folder containing this README in a new
-terminal, and then run:
-```
-galleon.sh provision ./provision.xml --dir=target/my-wildfly
-./target/my-wildfly/bin/standalone.sh
-```
-This provisions the server with the relevant Galleon layers, and starts it. The
-[main README](../README.md) contains information about the layers in this feature pack.
 
-Then in another terminal window, go to the same folder and run:
+The [main README](../README.md) contains information about the layers in this feature pack. You can use the `wildfly-maven-plugin` to build and run the server with the feature pack, and deploy the quickstart war.
+
 ```
-mvn package wildfly:deploy
+mvn wildfly:provision wildfly:dev
 ```
-This builds and deploys the application into the provisioned WildFly server.
 
 ## Check the GraphQL schema
 To view the schema, execute this command:

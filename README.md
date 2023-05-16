@@ -23,6 +23,7 @@ See [Installation guide](https://github.com/wildfly-extras/wildfly-graphql-featu
 **For development purposes, one way to obtain a WildFly distribution with a snapshot of this feature pack installed is to simply build the contents of this repository.
 After building (`mvn clean install`), it will appear under build/target/wildfly-$VERSION. The Galleon definition of what will be included can be found in `build/pom.xml`.**
 
+You can also build a server by using the wildfly plugin, maybe even in `dev` mode. See the Quickstart for details.
 
 -------------
 

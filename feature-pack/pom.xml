@@ -79,6 +79,7 @@
             <plugin>
                 <groupId>org.wildfly.maven.plugins</groupId>
                 <artifactId>licenses-plugin</artifactId>
+                <version>2.3.1.Final</version>
                 <inherited>false</inherited>
                 <executions>
                     <execution>
