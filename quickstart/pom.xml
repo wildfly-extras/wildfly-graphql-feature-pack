@@ -171,6 +171,8 @@
                         <layer>jmx-remoting</layer>
                         <layer>management</layer>
                         <layer>microprofile-graphql</layer>
+                        <layer>micrometer</layer>
+                        <layer>microprofile-telemetry</layer>
                     </layers>
                 </configuration>
             </plugin>
@@ -187,7 +189,7 @@
                         </goals>
                         <phase>test-compile</phase>
                         <configuration>
-                            <install-dir>${project.build.directory}/wildfly</install-dir>
+                            <install-dir>${project.build.directory}/wildfly-test</install-dir>
                             <record-state>false</record-state>
                             <log-time>${galleon.log.time}</log-time>
                             <plugin-options>
@@ -222,6 +224,8 @@
                                         <layer>observability</layer>
                                         <!-- Layers from this FP -->
                                         <layer>microprofile-graphql</layer>
+                                        <layer>micrometer</layer>
+                                        <layer>microprofile-telemetry</layer>
                                     </layers>
                                 </config>
                             </configurations>
@@ -234,7 +238,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables combine.children="append">
-                        <jboss.install.dir>${project.build.directory}/wildfly</jboss.install.dir>
+                        <jboss.install.dir>${project.build.directory}/wildfly-test</jboss.install.dir>
                         <server.jvm.args>-Djboss.bind.address=${node0} -Djboss.bind.address.management=${node0} -Djboss.bind.address.unsecure=${node0}</server.jvm.args>
                         <node0>${node0}</node0>
                     </systemPropertyVariables>
