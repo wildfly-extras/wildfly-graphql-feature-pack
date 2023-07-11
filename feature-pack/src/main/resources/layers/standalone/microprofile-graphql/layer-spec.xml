@@ -15,7 +15,10 @@
   ~ limitations under the License.
   -->
 
-<layer-spec xmlns="urn:jboss:galleon:layer-spec:1.0" name="microprofile-graphql">
+<layer-spec xmlns="urn:jboss:galleon:layer-spec:2.0" name="microprofile-graphql">
+    <props>
+        <prop name="org.wildfly.rule.annotations" value="org.eclipse.microprofile.graphql"/>
+    </props>
     <dependencies>
         <layer name="cdi"/>
         <layer name="microprofile-config"/>
