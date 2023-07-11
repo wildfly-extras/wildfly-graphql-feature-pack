@@ -70,7 +70,7 @@
         <version.jakarta-cdi>4.0.0</version.jakarta-cdi>
 
         <!-- Testing-only dependencies -->
-        <version.shrinkwrap>2.2.4</version.shrinkwrap>
+        <version.shrinkwrap>3.2.1</version.shrinkwrap>
         <version.commons-logging>1.1.3</version.commons-logging>
         <version.tyrus>1.1</version.tyrus>
         <version.junit>4.13.1</version.junit>
