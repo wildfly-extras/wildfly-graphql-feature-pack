@@ -30,6 +30,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>layer-metadata-tests</module>
         <module>integration</module>
         <module>server-tck</module>
         <module>client-vertx</module>
