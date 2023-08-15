@@ -77,7 +77,7 @@
         <version.tyrus>1.1</version.tyrus>
         <version.junit>4.13.1</version.junit>
         <version.rest-assured>5.3.0</version.rest-assured>
-        <version.arquillian-junit>1.7.0.Alpha12</version.arquillian-junit>
+        <version.arquillian-junit>1.7.1.Final</version.arquillian-junit>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
