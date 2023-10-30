@@ -38,11 +38,11 @@
     </licenses>
 
     <properties>
-	    <!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
-        <version.org.wildfly>29.0.0.Final-SNAPSHOT</version.org.wildfly>
-        <version.org.wildfly.core>21.1.0.Beta2</version.org.wildfly.core>
+	<!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
+        <version.org.wildfly>30.0.0.Final</version.org.wildfly>
+        <version.org.wildfly.core>22.0.1.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.6.0.Final</version.org.wildfly.common>
-        <version.org.jboss.galleon>5.2.0.Final</version.org.jboss.galleon>
+        <version.org.jboss.galleon>5.2.2.Final</version.org.jboss.galleon>
 
         <!-- Other WildFly feature pack that we depend on -->
         <version.org.wildfly.reactive-feature-pack>3.0.0.Final</version.org.wildfly.reactive-feature-pack> 
@@ -77,10 +77,8 @@
         <version.tyrus>1.1</version.tyrus>
         <version.junit>4.13.1</version.junit>
         <version.rest-assured>5.3.0</version.rest-assured>
-        <version.arquillian>5.0.0.Alpha6</version.arquillian>
         <version.arquillian-junit>1.7.0.Alpha12</version.arquillian-junit>
-        <version.wildfly.glow>1.0.0.Alpha1</version.wildfly.glow>
-        <version.org.testng>7.4.0</version.org.testng>
+        <version.wildfly.glow>1.0.0.Alpha7</version.wildfly.glow>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
@@ -411,6 +409,13 @@
             </dependency>
             <dependency>
                 <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-standard-test-expansion-bom</artifactId>
+                <version>${version.org.wildfly}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.wildfly</groupId>
                 <artifactId>wildfly-standard-expansion-bom</artifactId>
                 <version>${version.org.wildfly}</version>
                 <type>pom</type>
@@ -493,20 +498,6 @@
 
             <!-- Stuff used for testing only -->
             <dependency>
-                <!-- Not sure why the wildfly and wildfly-core upgrades made this necessary -->
-                <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-container-managed</artifactId>
-                <scope>test</scope>
-                <version>${version.arquillian}</version>
-            </dependency>
-            <dependency>
-                <!-- Not sure why the wildfly and wildfly-core upgrades made this necessary -->
-                <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-protocol-jmx</artifactId>
-                <scope>test</scope>
-                <version>${version.arquillian}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.arquillian.junit</groupId>
                 <artifactId>arquillian-junit-container</artifactId>
                 <version>${version.arquillian-junit}</version>
@@ -582,13 +573,6 @@
                 <groupId>io.rest-assured</groupId>
                 <artifactId>rest-assured</artifactId>
                 <version>${version.rest-assured}</version>
-            </dependency>
-            <!-- Not sure why the wildfly and wildfly-core upgrades made this necessary -->
-            <dependency>
-                <groupId>org.testng</groupId>
-                <artifactId>testng</artifactId>
-                <version>${version.org.testng}</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

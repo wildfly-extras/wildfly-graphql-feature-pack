@@ -195,6 +195,11 @@
             <groupId>io.vertx</groupId>
             <artifactId>vertx-uri-template</artifactId>
         </dependency>
+        <!-- required when upgrading to WildFly 30 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
