@@ -150,6 +150,36 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.wildfly.glow</groupId>
+                <artifactId>wildfly-glow-arquillian-plugin</artifactId>
+                <configuration>
+                    <feature-packs>
+                        <feature-pack>
+                            <groupId>org.wildfly</groupId>
+                            <artifactId>wildfly-galleon-pack</artifactId>
+                            <version>${version.org.wildfly}</version>
+                        </feature-pack>
+                        <feature-pack>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>
+                            <version>${project.version}</version>
+                        </feature-pack>
+                    </feature-packs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>scan-graphql</id>
+                        <goals>
+                            <goal>scan</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                        <configuration>
+                            <expected-discovery>[cdi, microprofile-config, microprofile-graphql]==>ee-core-profile-server,microprofile-graphql</expected-discovery>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.jboss.galleon</groupId>
                 <artifactId>galleon-maven-plugin</artifactId>
                 <executions>
@@ -157,9 +187,9 @@
                     <execution>
                         <id>server-provisioning</id>
                         <goals>
-                            <goal>provision</goal>
+                            <goal>provision-file</goal>
                         </goals>
-                        <phase>compile</phase>
+                        <phase>process-test-classes</phase>
                         <configuration>
                             <install-dir>${project.build.directory}/wildfly</install-dir>
                             <record-state>false</record-state>
@@ -169,36 +199,7 @@
                                 <jboss-fork-embedded>${galleon.fork.embedded}</jboss-fork-embedded>
                                 <optional-packages>passive+</optional-packages>
                             </plugin-options>
-                            <feature-packs>
-                                <feature-pack>
-                                    <transitive>true</transitive>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-galleon-pack</artifactId>
-                                    <version>${version.org.wildfly}</version>
-                                    <inherit-packages>false</inherit-packages>
-                                    <inherit-configs>false</inherit-configs>
-                                </feature-pack>
-                                <feature-pack>
-                                    <groupId>${project.groupId}</groupId>
-                                    <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>
-                                    <version>${project.version}</version>
-                                    <inherit-packages>false</inherit-packages>
-                                    <inherit-configs>false</inherit-configs>
-                                </feature-pack>
-                            </feature-packs>
-                            <configurations>
-                                <config>
-                                    <model>standalone</model>
-                                    <name>standalone.xml</name>
-                                    <layers>
-                                        <layer>jaxrs-server</layer>
-                                        <layer>jmx-remoting</layer>
-                                        <layer>observability</layer>
-                                        <!-- Layers from this FP -->
-                                        <layer>microprofile-graphql</layer>
-                                    </layers>
-                                </config>
-                            </configurations>
+                            <provisioning-file>target/glow-scan/provisioning.xml</provisioning-file>
                         </configuration>
                     </execution>
                 </executions>
