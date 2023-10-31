@@ -585,6 +585,11 @@
                     <version>${version.org.jboss.galleon}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.wildfly.glow</groupId>
+                    <artifactId>wildfly-glow-arquillian-plugin</artifactId>
+                    <version>${version.wildfly.glow}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.wildfly.galleon-plugins</groupId>
                     <artifactId>wildfly-galleon-maven-plugin</artifactId>
                     <version>${version.org.wildfly.galleon-plugins}</version>
