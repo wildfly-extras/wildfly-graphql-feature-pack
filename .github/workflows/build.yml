@@ -49,11 +49,12 @@ jobs:
           mvn -B install
 
   older-wildfly:
-    if: false # Currently only WF 28 is supported by this feature pack branch
+# uncomment the following line when this FP branch supports only one WF version and thus testing with older WF builds isn't needed
+    if: false
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wildfly: [23.0.2.Final, 24.0.0.Final, 25.0.1.Final]
+        wildfly: [28.0.1.Final, 29.0.1.Final]
     name: build with wildfly ${{matrix.wildfly}}
 
     steps:
