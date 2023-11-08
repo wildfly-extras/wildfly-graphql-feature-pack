@@ -6,13 +6,13 @@
 -->
 <installation xmlns="urn:jboss:galleon:provisioning:3.0">
     <!--  below here we specify the desired WildFly version -->
-    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#28.0.0.Final">
+    <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current#30.0.0.Final">
         <default-configs inherit="true"/>
     </feature-pack>
     <!-- below here we specify the desired GraphQL feature pack version
          see https://github.com/wildfly-extras/wildfly-graphql-feature-pack/wiki/Supported-versions-and-future-versions-roadmap for the list of supported FP versions depending on the used WildFly version
 	 -->
-    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:2.1.0.Final">
+    <feature-pack location="org.wildfly.extras.graphql:wildfly-microprofile-graphql-feature-pack:2.2.0.Final">
         <default-configs inherit="false"/>
     </feature-pack>
     <config model="standalone" name="standalone-graphql.xml">
