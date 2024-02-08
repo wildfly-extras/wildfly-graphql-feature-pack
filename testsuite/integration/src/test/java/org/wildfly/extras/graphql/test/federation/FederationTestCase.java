@@ -18,6 +18,7 @@ package org.wildfly.extras.graphql.test.federation;
 
 import io.restassured.RestAssured;
 import io.smallrye.graphql.api.federation.Extends;
+import io.smallrye.graphql.api.federation.FieldSet;
 import io.smallrye.graphql.api.federation.Key;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.graphql.Description;
@@ -61,7 +62,7 @@ public class FederationTestCase {
     }
 
     @Extends
-    @Key(fields = "id")
+    @Key(fields = @FieldSet("id"))
     public static class Product {
 
         @Id
