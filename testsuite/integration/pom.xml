@@ -297,6 +297,7 @@
                         <server.jvm.args>${server.jvm.args}</server.jvm.args>
                         <version.org.wildfly>${version.org.wildfly}</version.org.wildfly>
                     </systemPropertyVariables>
+                    <reuseForks>false</reuseForks>
                 </configuration>
             </plugin>
         </plugins>
