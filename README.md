@@ -4,6 +4,11 @@ This repository contains a Galleon feature pack to add the MicroProfile GraphQL 
 Galleon is the tool we use internally to build the WildFly server. See the Galleon 
 [documentation](https://docs.wildfly.org/galleon/) for more background about the concepts.
 
+To view the mapping between feature pack versions and supported WildFly
+versions, see the [Supported versions and future versions
+roadmap](https://github.com/wildfly-extras/wildfly-graphql-feature-pack/wiki/Supported-versions-and-future-versions-roadmap)
+page.
+
 ---------------------
 
 ## Installing the MicroProfile GraphQL Layer
@@ -42,6 +47,13 @@ The `microprofile-graphql` layer installs the `microprofile-graphql-smallrye` su
 the MicroProfile [GraphQL](https://github.com/eclipse/microprofile-graphql) APIs 
 from your application.
 
+## Limitations
+
+- Generally, only a single GraphQL deployment on one WildFly instance is
+  supported. Multiple deployments may work, but there is a danger that they
+  will interfere with each other in some ways, breaking the functionality as
+  well as potentially introducing security issues.
+- EAR deployments are not supported
 
 ----
 ## References
