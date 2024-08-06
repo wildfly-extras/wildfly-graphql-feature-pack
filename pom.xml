@@ -39,17 +39,17 @@
 
     <properties>
 	<!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
-        <version.org.wildfly>31.0.1.Final</version.org.wildfly>
-        <version.org.wildfly.core>23.0.3.Final</version.org.wildfly.core>
+        <version.org.wildfly>33.0.0.Final</version.org.wildfly>
+        <version.org.wildfly.core>25.0.0.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.6.0.Final</version.org.wildfly.common>
-        <version.org.jboss.galleon>5.2.2.Final</version.org.jboss.galleon>
+        <version.org.jboss.galleon>6.0.2.Final</version.org.jboss.galleon>
 
         <!-- Other WildFly feature pack that we depend on -->
         <version.org.wildfly.reactive-feature-pack>3.0.0.Final</version.org.wildfly.reactive-feature-pack> 
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>2.9.0</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>2.9.1</version.io.smallrye.graphql>
         <version.org.eclipse.microprofile.graphql>2.0</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>22.1</version.com.graphql-java>
         <version.com.graphql-java.dataloader>3.2.1</version.com.graphql-java.dataloader>
@@ -78,11 +78,11 @@
         <version.junit>4.13.1</version.junit>
         <version.rest-assured>5.3.0</version.rest-assured>
         <version.arquillian-junit>1.7.0.Alpha12</version.arquillian-junit>
-        <version.wildfly.glow>1.0.0.Alpha7</version.wildfly.glow>
+        <version.wildfly.glow>1.1.0.Final</version.wildfly.glow>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
-        <version.org.wildfly.galleon-plugins>6.4.2.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly.galleon-plugins>7.1.2.Final</version.org.wildfly.galleon-plugins>
         <version.wildfly.maven.plugin>4.1.1.Final</version.wildfly.maven.plugin>
 
         <!-- Misc. -->
