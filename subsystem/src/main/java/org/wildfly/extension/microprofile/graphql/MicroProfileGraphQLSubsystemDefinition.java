@@ -46,7 +46,6 @@ public class MicroProfileGraphQLSubsystemDefinition extends PersistentResourceDe
             .of(GRAPHQL_CAPABILITY_NAME)
             .addRequirements(WELD_CAPABILITY_NAME)
             .addRequirements(CONFIG_CAPABILITY_NAME)
-            .addRequirements()
             .build();
 
     public MicroProfileGraphQLSubsystemDefinition() {
