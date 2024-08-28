@@ -18,6 +18,8 @@
 
     <resources>
         <artifact name="${io.smallrye:smallrye-graphql-client}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-client-model}"/>
+        <artifact name="${io.smallrye:smallrye-graphql-client-model-builder}"/>
     </resources>
 
     <dependencies>
@@ -29,6 +31,8 @@
         <module name="io.smallrye.config"/>
         <module name="jakarta.enterprise.api"/>
         <module name="jakarta.json.bind.api"/>
+        <module name="org.jboss.jandex"/>
+        <module name="javax.sql.api"/>
 	<module name="org.jboss.logging"/>
     </dependencies>
 </module>

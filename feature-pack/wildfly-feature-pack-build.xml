@@ -51,6 +51,7 @@
         <extensions>
             <standalone>
                 <extension>org.wildfly.extension.microprofile.graphql-smallrye</extension>
+                <extension>org.wildfly.extension.microprofile.graphql-client-smallrye</extension>
             </standalone>
         </extensions>
     </generate-feature-specs>

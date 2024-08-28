@@ -26,7 +26,7 @@ public class TypesafeClientOutsideVMTestCase {
     @Deployment(testable = false)
     public static WebArchive deployment() {
         WebArchive war = ShrinkWrap.create(WebArchive.class, "funny.war")
-            .addClasses(Funny.class, FunnyApi.class, FunnyApiImpl.class)
+            .addClasses(Funny.class, FunnyApiImpl.class)
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
         return war;
     }
