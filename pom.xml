@@ -293,6 +293,28 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client-model-builder</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.smallrye</groupId>
+                <artifactId>smallrye-graphql-client-model</artifactId>
+                <version>${version.io.smallrye.graphql}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>io.smallrye.reactive</groupId>
                 <artifactId>mutiny</artifactId>
                 <version>${version.io.smallrye.reactive.mutiny}</version>
@@ -448,6 +470,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>wildfly-microprofile-graphql</artifactId>
+                <version>${project.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>wildfly-microprofile-graphql-client</artifactId>
                 <version>${project.version}</version>
                 <exclusions>
                     <exclusion>
@@ -685,6 +718,9 @@
         <module>build</module>
         <module>testsuite</module>
         <module>quickstart</module>
+        <module>quickstart-client</module>
+        <module>client-subsystem</module>
+
     </modules>
 
 </project>
