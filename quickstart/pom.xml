@@ -20,11 +20,11 @@
     <parent>
         <artifactId>wildfly-microprofile-graphql-parent</artifactId>
         <groupId>org.wildfly.extras.graphql</groupId>
-        <version>2.4.1.Final-SNAPSHOT</version>
+        <version>2.4.1.Final</version>
     </parent>
 
     <artifactId>wildfly-microprofile-graphql-quickstart</artifactId>
-    <version>2.4.1.Final-SNAPSHOT</version>
+    <version>2.4.1.Final</version>
     <packaging>war</packaging>
     <name>WildFly MicroProfile GraphQL - Quickstart</name>
     <description>Quickstart for the WildFly implementation of MicroProfile GraphQL</description>
