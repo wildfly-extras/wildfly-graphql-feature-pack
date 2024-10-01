@@ -76,7 +76,7 @@ public class BeanValidationTestCase {
                 .then()
                 .log().body()
                 .assertThat()
-                .body("errors[0].extensions.\"violation.message\"",
+                .body("errors[0].extensions.violations[0].message",
                         containsString("size must be between 4 and 2147483647"))
                 .body("data.sayHello", nullValue());
     }
