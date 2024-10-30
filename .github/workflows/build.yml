@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        wildfly: [32.0.1.Final, 31.0.1.Final, 30.0.1.Final]
+        wildfly: [33.0.2.Final, 32.0.1.Final, 31.0.1.Final, 30.0.1.Final]
     name: build with wildfly ${{matrix.wildfly}}
 
     steps:
