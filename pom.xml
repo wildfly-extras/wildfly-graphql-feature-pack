@@ -60,7 +60,7 @@
 
         <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
              so they are here mostly just for compilation and testing purposes -->
-        <version.io.smallrye.reactive.mutiny>2.5.1</version.io.smallrye.reactive.mutiny>
+        <version.io.smallrye.reactive.mutiny>2.6.2</version.io.smallrye.reactive.mutiny>
         <version.io.smallrye.config>3.3.1</version.io.smallrye.config>
         <version.org.reactivestreams>1.0.4</version.org.reactivestreams>
         <version.elytron>2.1.0.Final</version.elytron>
