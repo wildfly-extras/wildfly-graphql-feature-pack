@@ -148,6 +148,14 @@
             <artifactId>wildfly-arquillian-protocol-jmx</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- For consistent build order -->
+        <dependency>
+            <groupId>org.wildfly.extras.graphql</groupId>
+            <artifactId>wildfly-microprofile-graphql-feature-pack</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
