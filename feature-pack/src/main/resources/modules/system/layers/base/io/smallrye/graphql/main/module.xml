@@ -41,9 +41,6 @@
         <module name="org.eclipse.microprofile.config.api"/>
         <module name="org.eclipse.microprofile.graphql.api" export="true"/>
 
-        <!-- from the reactive feature pack -->
-        <module name="io.smallrye.context-propagation"/>
-        <module name="org.eclipse.microprofile.context-propagation.api"/>
         <module name="io.smallrye.reactive.mutiny" export="true"/>
         <module name="io.smallrye.reactive.mutiny.zero-flow-adapters" export="true"/>
         <module name="org.reactivestreams" export="true"/>

@@ -124,12 +124,6 @@
 <!--            <version>${version.org.wildfly}</version>-->
 <!--            <type>zip</type>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>org.wildfly.extras.reactive</groupId>
-            <artifactId>wildfly-microprofile-reactive-feature-pack</artifactId>
-            <version>${version.org.wildfly.reactive-feature-pack}</version>
-            <type>zip</type>
-        </dependency>
 
         <!-- Project modules -->
         <dependency>
