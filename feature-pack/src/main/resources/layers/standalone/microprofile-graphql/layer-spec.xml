@@ -22,7 +22,6 @@
     <dependencies>
         <layer name="cdi"/>
         <layer name="microprofile-config"/>
-        <layer name="microprofile-context-propagation"/>
     </dependencies>
 
     <feature-group name="graphql"/>
