@@ -17,6 +17,9 @@
 
 <layer-spec xmlns="urn:jboss:galleon:layer-spec:2.0" name="microprofile-graphql">
     <props>
+        <prop name="org.wildfly.category" value="Microprofile"/>
+        <prop name="org.wildfly.description" value="Support for microprofile graphql"/>
+        <prop name="org.wildfly.stability" value="community"/>
         <prop name="org.wildfly.rule.annotations" value="org.eclipse.microprofile.graphql"/>
     </props>
     <dependencies>
