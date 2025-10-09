@@ -46,13 +46,13 @@
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
-        <version.io.smallrye.graphql>2.11.0</version.io.smallrye.graphql>
+        <version.io.smallrye.graphql>2.15.0</version.io.smallrye.graphql>
         <version.org.eclipse.microprofile.graphql>2.0</version.org.eclipse.microprofile.graphql>
         <version.com.graphql-java>22.2</version.com.graphql-java>
         <version.com.graphql-java.dataloader>3.3.0</version.com.graphql-java.dataloader>
         <!-- WF contains vert.x, but we need to add the vertx-web-client artifact. This version should be the same
             as the vert.x version in WildFly -->
-        <version.vertx>4.5.2</version.vertx>
+        <version.vertx>4.5.4</version.vertx>
         <version.graphql-java-federation>4.4.0</version.graphql-java-federation>
 
         <!-- Dependencies which are not included directly in the built feature pack but are dragged from WildFly,
