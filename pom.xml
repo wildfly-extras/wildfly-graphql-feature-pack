@@ -19,7 +19,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>39</version>
+        <version>51</version>
     </parent>
 
     <groupId>org.wildfly.extras.graphql</groupId>
@@ -28,6 +28,7 @@
     <packaging>pom</packaging>
     <name>WildFly MicroProfile GraphQL - Parent</name>
     <description>WildFly implementation of MicroProfile GraphQL</description>
+    <url>https://github.com/wildfly-extras/wildfly-graphql-feature-pack/</url>
 
     <licenses>
         <license>
@@ -36,6 +37,15 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
+   <developers>
+      <developer>
+        <name>Jan Martiska</name>
+        <email>jmartisk@ibm.com</email>
+        <organization>IBM</organization>
+        <organizationUrl>http://www.ibm.com</organizationUrl>
+      </developer>
+    </developers>
 
     <properties>
 	<!-- Target WildFly version, and other parts needed for the Galleon maven plugin -->
@@ -116,7 +126,12 @@
         <modular.jdk.args>--add-exports=java.base/sun.nio.ch=ALL-UNNAMED
             --add-exports=jdk.unsupported/sun.reflect=ALL-UNNAMED
             --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
-            --add-modules=java.se</modular.jdk.args>
+	     --add-modules=java.se</modular.jdk.args>
+
+	<!-- release-related stuff -->
+	<nexus.repository.staging>wildfly-extras-staging</nexus.repository.staging>
+	<nexus.repository.release>wildfly-extras</nexus.repository.release>
+	<nexus.staging.tag>wildfly-graphql-feature-pack-${project.version}</nexus.staging.tag>
     </properties>
 
     <repositories>
