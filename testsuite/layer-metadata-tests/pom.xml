@@ -12,6 +12,11 @@
     <artifactId>layers-metadata-tests</artifactId>
     <name>WildFly MicroProfile GraphQL - Layers Metadata Tests</name>
 
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+	<skipNexusStagingDeploymentMojo>true</skipNexusStagingDeploymentMojo>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.wildfly.extras.graphql</groupId>
@@ -83,6 +88,13 @@
                         <phase>none</phase>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
         <testResources>

@@ -89,7 +89,8 @@
         <version.arquillian_wildfly>${version.org.wildfly}</version.arquillian_wildfly>
 
         <!-- Don't try to deploy the testsuite modules because they don't build jars -->
-        <maven.deploy.skip>true</maven.deploy.skip>
+	<maven.deploy.skip>true</maven.deploy.skip>
+	<skipNexusStagingDeploymentMojo>true</skipNexusStagingDeploymentMojo>
 
         <!-- used to enable trace logging for test suite runs -->
         <trace>none</trace>

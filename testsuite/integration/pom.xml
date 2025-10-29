@@ -29,7 +29,8 @@
     <name>WildFly MicroProfile GraphQL - Integration Tests</name>
 
     <properties>
-        <maven.deploy.skip>true</maven.deploy.skip>
+	<maven.deploy.skip>true</maven.deploy.skip>
+	<skipNexusStagingDeploymentMojo>true</skipNexusStagingDeploymentMojo>
     </properties>
 
     <dependencies>

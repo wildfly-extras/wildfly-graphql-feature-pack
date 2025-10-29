@@ -12,6 +12,11 @@
     <artifactId>client-vertx</artifactId>
     <name>WildFly MicroProfile GraphQL - Integration Tests - Client - Vert.x based implementation</name>
 
+    <properties>
+	<maven.deploy.skip>true</maven.deploy.skip>
+	<skipNexusStagingDeploymentMojo>true</skipNexusStagingDeploymentMojo>
+    </properties>
+
     <dependencies>
         <!-- GraphQL + client dependencies -->
         <dependency>
