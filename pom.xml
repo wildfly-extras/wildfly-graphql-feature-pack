@@ -74,7 +74,7 @@
         <version.resteasy.client>6.2.12.Final</version.resteasy.client>
         <version.jakarta-validation>3.0.2</version.jakarta-validation>
         <version.jakarta-jaxrs>3.1.0</version.jakarta-jaxrs>
-        <version.jakarta-cdi>4.0.0</version.jakarta-cdi>
+        <version.jakarta-cdi>4.1.0</version.jakarta-cdi>
         <version.kotlinx.metadata.jvm>0.7.0</version.kotlinx.metadata.jvm>
         <version.kotlin.stdlib>1.9.0</version.kotlin.stdlib>
 
