@@ -76,7 +76,7 @@
         <version.jakarta-jaxrs>3.1.0</version.jakarta-jaxrs>
         <version.jakarta-cdi>4.1.0</version.jakarta-cdi>
         <version.kotlinx.metadata.jvm>0.7.0</version.kotlinx.metadata.jvm>
-        <version.kotlin.stdlib>1.9.0</version.kotlin.stdlib>
+        <version.kotlin.stdlib>2.3.0</version.kotlin.stdlib>
 
 
         <!-- Testing-only dependencies -->
