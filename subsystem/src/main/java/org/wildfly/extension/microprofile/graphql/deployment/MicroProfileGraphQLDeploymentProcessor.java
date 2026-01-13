@@ -16,8 +16,8 @@
 
 package org.wildfly.extension.microprofile.graphql.deployment;
 
-import io.smallrye.graphql.entry.http.ExecutionServlet;
-import io.smallrye.graphql.entry.http.SchemaServlet;
+import io.smallrye.graphql.servlet.ExecutionServlet;
+import io.smallrye.graphql.servlet.SchemaServlet;
 import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import org.jboss.as.ee.structure.DeploymentType;
 import org.jboss.as.ee.structure.DeploymentTypeMarker;
@@ -100,7 +100,7 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
     // the application
     private void registerStartupListener(JBossWebMetaData webdata) {
         ListenerMetaData startupListenerMetadata = new ListenerMetaData();
-        startupListenerMetadata.setListenerClass("io.smallrye.graphql.entry.http.StartupListener");
+        startupListenerMetadata.setListenerClass("io.smallrye.graphql.servlet.StartupListener");
         List<ListenerMetaData> containerListeners = webdata.getListeners();
         if (containerListeners == null) {
             List<ListenerMetaData> list = new ArrayList<>();

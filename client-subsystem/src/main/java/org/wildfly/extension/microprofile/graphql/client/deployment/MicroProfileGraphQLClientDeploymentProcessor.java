@@ -16,7 +16,7 @@
 
 package org.wildfly.extension.microprofile.graphql.client.deployment;
 
-import io.smallrye.graphql.client.model.ClientModelBuilder;
+import io.smallrye.graphql.client.modelbuilder.ClientModelBuilder;
 import io.smallrye.graphql.client.model.ClientModels;
 import org.jboss.as.controller.capability.CapabilityServiceSupport;
 import org.jboss.as.ee.structure.DeploymentType;
