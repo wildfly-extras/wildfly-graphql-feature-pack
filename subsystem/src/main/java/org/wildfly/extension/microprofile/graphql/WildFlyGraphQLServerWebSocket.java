@@ -1,6 +1,6 @@
 package org.wildfly.extension.microprofile.graphql;
 
-import io.smallrye.graphql.entry.http.GraphQLServerWebSocket;
+import io.smallrye.graphql.servlet.GraphQLServerWebSocket;
 
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnError;
