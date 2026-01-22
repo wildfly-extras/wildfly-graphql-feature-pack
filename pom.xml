@@ -24,7 +24,7 @@
 
     <groupId>org.wildfly.extras.graphql</groupId>
     <artifactId>wildfly-microprofile-graphql-parent</artifactId>
-    <version>2.6.0.Final</version>
+    <version>2.7.0.Final-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>WildFly MicroProfile GraphQL - Parent</name>
     <description>WildFly implementation of MicroProfile GraphQL</description>
@@ -93,7 +93,7 @@
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
-        <version.org.wildfly.galleon-plugins>8.0.0.Final</version.org.wildfly.galleon-plugins>
+        <version.org.wildfly.galleon-plugins>8.1.0.Final</version.org.wildfly.galleon-plugins>
         <version.wildfly.maven.plugin>5.1.5.Final</version.wildfly.maven.plugin>
 
         <!-- Misc. -->
