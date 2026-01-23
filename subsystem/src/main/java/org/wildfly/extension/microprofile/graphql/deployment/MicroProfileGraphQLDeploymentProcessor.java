@@ -17,8 +17,10 @@
 package org.wildfly.extension.microprofile.graphql.deployment;
 
 import io.smallrye.graphql.servlet.ExecutionServlet;
+import io.smallrye.graphql.servlet.GraphQLServerWebSocket;
 import io.smallrye.graphql.servlet.SchemaServlet;
 import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
+import jakarta.websocket.server.ServerEndpointConfig;
 import org.jboss.as.ee.structure.DeploymentType;
 import org.jboss.as.ee.structure.DeploymentTypeMarker;
 import org.jboss.as.server.deployment.Attachments;
@@ -80,11 +82,21 @@ public class MicroProfileGraphQLDeploymentProcessor implements DeploymentUnitPro
 
         // if the GraphQL API contains subscriptions, deploy the relevant web socket endpoint that handles them
         if (!compositeIndex.getAnnotations(ANNOTATION_SUBSCRIPTION).isEmpty()) {
+            ClassLoader applicationClassLoader = phaseContext.getDeploymentUnit().getAttachment(Attachments.MODULE).getClassLoader();
+            WildFlyGraphQLServerWebSocket endpointInstance = new WildFlyGraphQLServerWebSocket(new GraphQLServerWebSocket(), applicationClassLoader);
             WebSocketDeploymentInfo webSocketDeploymentInfo = deploymentUnit.getAttachment(UndertowAttachments.WEB_SOCKET_DEPLOYMENT_INFO);
-            webSocketDeploymentInfo.addEndpoint(WildFlyGraphQLServerWebSocket.class);
+            ServerEndpointConfig endpointConfig = ServerEndpointConfig.Builder.create(WildFlyGraphQLServerWebSocket.class, "/graphql")
+                    .configurator(new ServerEndpointConfig.Configurator() {
+                        @Override
+                        public <T> T getEndpointInstance(Class<T> endpointClass) {
+                            return (T)endpointInstance;
+                        }
+                    })
+                    .subprotocols(List.of("graphql-ws", "graphql-transport-ws"))
+                    .build();
+            webSocketDeploymentInfo.addEndpoint(endpointConfig);
             mergedJBossWebMetaData.setEnableWebSockets(true);
         }
-
     }
 
     private boolean hasFederationAnnotations(CompositeIndex index) {

@@ -1,42 +1,51 @@
 package org.wildfly.extension.microprofile.graphql;
 
 import io.smallrye.graphql.servlet.GraphQLServerWebSocket;
-
-import jakarta.websocket.OnClose;
-import jakarta.websocket.OnError;
-import jakarta.websocket.OnMessage;
-import jakarta.websocket.OnOpen;
+import jakarta.websocket.CloseReason;
+import jakarta.websocket.Endpoint;
+import jakarta.websocket.EndpointConfig;
+import jakarta.websocket.MessageHandler;
 import jakarta.websocket.Session;
-import jakarta.websocket.server.ServerEndpoint;
 
 /**
- * WebSocket endpoint that exposes GraphQL over websockets.
- * Just wrap the original GraphQLServerWebSocket class from SmallRye. The reason we're not using it directly is that
- * I don't know how to make the deployer see the annotations on that class - if we try to use it directly then
- * the undertow deployer will fail. So we extend that class, re-declare its annotations and delegate everything to it.
+ * Wrapper for smallrye-graphql's GraphQLServerWebSocket to set the TCCL correctly to the application class loader while handling messages.
  */
-@ServerEndpoint(value = "/graphql", subprotocols = { "graphql-transport-ws", "graphql-ws" })
-public class WildFlyGraphQLServerWebSocket extends GraphQLServerWebSocket {
+public class WildFlyGraphQLServerWebSocket extends Endpoint {
 
-    @OnOpen
-    public void onOpen(Session session) {
-        super.onOpen(session);
+    private final GraphQLServerWebSocket delegate;
+    private final ClassLoader applicationClassLoader;
+
+    public WildFlyGraphQLServerWebSocket(GraphQLServerWebSocket delegate, ClassLoader applicationClassLoader) {
+        super();
+        this.delegate = delegate;
+        this.applicationClassLoader = applicationClassLoader;
     }
 
-    @OnClose
-    public void onClose(Session session) {
-        super.onClose(session);
+    @Override
+    public void onClose(Session session, CloseReason closeReason) {
+        delegate.onClose(session);
     }
 
-    @OnError
-    public void onError(Session session, Throwable throwable) {
-        super.onError(session, throwable);
+    @Override
+    public void onError(Session session, Throwable thr) {
+        delegate.onError(session, thr);
     }
 
-    @OnMessage
-    public void handleMessage(Session session, String message) {
-        super.handleMessage(session, message);
+    @Override
+    public void onOpen(Session session, EndpointConfig config) {
+        delegate.onOpen(session);
+        session.addMessageHandler(new MessageHandler.Whole<String>() {
+            @Override
+            public void onMessage(String message) {
+                ClassLoader old = Thread.currentThread().getContextClassLoader();
+                Thread.currentThread().setContextClassLoader(applicationClassLoader);
+                try {
+                    delegate.handleMessage(session, message);
+                } finally {
+                    Thread.currentThread().setContextClassLoader(old);
+                }
+            }
+        });
     }
-
 
 }
