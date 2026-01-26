@@ -264,7 +264,7 @@
             <!-- to set up users and passwords for security related tests -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.4.0</version>
                 <executions>
                     <execution>
                         <id>setup-security-for-tests</id>
