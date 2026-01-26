@@ -29,9 +29,8 @@
         <artifact name="${com.graphql-java:graphql-java}"/>
         <artifact name="${com.graphql-java:java-dataloader}"/>
         <artifact name="${com.apollographql.federation:federation-graphql-java-support}"/>
-        <artifact name="${org.jetbrains.kotlinx:kotlinx-metadata-jvm}"/>
+        <artifact name="${org.jetbrains.kotlin:kotlin-metadata-jvm}"/>
         <artifact name="${org.jetbrains.kotlin:kotlin-stdlib}"/>
-        <artifact name="${org.jetbrains.kotlin:kotlin-stdlib-common}"/>
     </resources>
 
     <dependencies>
