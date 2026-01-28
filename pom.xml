@@ -71,7 +71,6 @@
         <version.io.smallrye.config>3.12.4</version.io.smallrye.config>
         <version.org.reactivestreams>1.0.4</version.org.reactivestreams>
         <version.elytron>2.1.0.Final</version.elytron>
-        <version.resteasy.client>6.2.12.Final</version.resteasy.client>
         <version.jakarta-validation>3.0.2</version.jakarta-validation>
         <version.jakarta-jaxrs>3.1.0</version.jakarta-jaxrs>
         <version.jakarta-cdi>4.1.0</version.jakarta-cdi>
@@ -586,11 +585,6 @@
                 <groupId>io.smallrye.config</groupId>
                 <artifactId>smallrye-config</artifactId>
                 <version>${version.io.smallrye.config}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.resteasy</groupId>
-                <artifactId>resteasy-client</artifactId>
-                <version>${version.resteasy.client}</version>
             </dependency>
             <dependency>
                 <groupId>io.vertx</groupId>
