@@ -74,7 +74,7 @@
         <version.jakarta-validation>3.0.2</version.jakarta-validation>
         <version.jakarta-jaxrs>4.0.0</version.jakarta-jaxrs>
         <version.jakarta-cdi>4.1.0</version.jakarta-cdi>
-        <version.kotlin>2.3.0</version.kotlin>
+        <version.kotlin>2.3.10</version.kotlin>
 
 
         <!-- Testing-only dependencies -->
