@@ -70,7 +70,7 @@
         <version.io.smallrye.reactive.mutiny>3.1.0</version.io.smallrye.reactive.mutiny>
         <version.io.smallrye.config>3.16.0</version.io.smallrye.config>
         <version.org.reactivestreams>1.0.4</version.org.reactivestreams>
-        <version.elytron>2.8.0.Final</version.elytron>
+        <version.elytron>2.8.3.Final</version.elytron>
         <version.jakarta-validation>3.0.2</version.jakarta-validation>
         <version.jakarta-jaxrs>4.0.0</version.jakarta-jaxrs>
         <version.jakarta-cdi>4.1.0</version.jakarta-cdi>
