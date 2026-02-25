@@ -87,7 +87,7 @@
         <version.wildfly.glow>1.5.2.Final</version.wildfly.glow>
         <!-- this is a dependency of Mutiny, and we need to bring it in separately to have it on
          the test class path of @RunAsClient graphql-client tests -->
-        <version.jctools>4.0.5</version.jctools>
+        <version.jctools>4.0.6</version.jctools>
 
         <!-- Plugin versions and their dependency versions -->
         <version.org.wildfly.checkstyle-config>1.0.8.Final</version.org.wildfly.checkstyle-config>
