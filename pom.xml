@@ -83,7 +83,7 @@
         <version.tyrus>1.2.1</version.tyrus>
         <version.junit>4.13.2</version.junit>
         <version.rest-assured>6.0.0</version.rest-assured>
-        <version.arquillian-junit>1.10.0.Final</version.arquillian-junit>
+        <version.arquillian-junit>1.10.1.Final</version.arquillian-junit>
         <version.wildfly.glow>1.5.2.Final</version.wildfly.glow>
         <!-- this is a dependency of Mutiny, and we need to bring it in separately to have it on
          the test class path of @RunAsClient graphql-client tests -->
