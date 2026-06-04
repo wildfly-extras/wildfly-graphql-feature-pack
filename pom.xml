@@ -52,7 +52,7 @@
         <version.org.wildfly>40.0.0.Final</version.org.wildfly>
         <version.org.wildfly.core>32.0.0.Final</version.org.wildfly.core>
         <version.org.wildfly.common>1.6.0.Final</version.org.wildfly.common>
-        <version.org.jboss.galleon>7.0.7.Final</version.org.jboss.galleon>
+        <version.org.jboss.galleon>7.0.8.Final</version.org.jboss.galleon>
 
         <!-- Libraries provided by this feature pack. These variables directly affect what will be in
              the built feature pack. -->
